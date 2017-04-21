@@ -10,7 +10,7 @@ Create and switch to a branch.
 
 感谢[stormzhang](http://stormzhang.com/github/2016/06/04/learn-github-from-zero4/)和[廖老师](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 # git学习笔记
-- 远程库
+## 远程库
 	- 克隆远程仓库到本地：
 	`git clone git@server-name:path/repo-name.git`
 	- 如果本地仓库需要关联远程仓库：
@@ -27,7 +27,7 @@ Create and switch to a branch.
 		`git remote -v`
 	- 将远程dev分支迁到本地dev分支：
 	`git checkout -b dev origin/dev`
-- 基本
+## 基本
 	- 初始化一个仓库：
 	`git init`
 	- 将a文件添加到暂存区（stage），可以一次add多个文件，文件间用空格隔开：
@@ -55,7 +55,7 @@ Create and switch to a branch.
 			`git log --graph --pretty=oneling --abbrev-commit`
 	- 查看之前的所有命令：
 	`git reflog`
--分支和版本
+## 分支和版本
 	- `HEAD`表示当前分支版本，上一个版本就是`HEAD^`，上上一个版本就是`HEAD^^`，当然往上n个版本可以写成`HEAD~100`
 		- 回退/前进到某个版本：
 		`git reset --hard commit_id`
