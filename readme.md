@@ -37,12 +37,18 @@ Create and switch to a branch.
 	`git diff HEAD -- a.txt`
 - 查看历史提交信息：
 `git log`
-	- 简化输出信息：
+	- 简化显示一行提交信息：
 	`git log --pretty=oneline`
+	- 查看分支图
+	`git log --graph`
+		- 一行提交信息的分支图
+		`git log --graph --pretty=oneline`
+		- 继续简化，缩写`commit_id`的分支图
+		`git log --graph --pretty=oneling --abbrev-commit`
 - 查看之前的所有命令：
 `git reflog`
 
-- `HEAD`表示当前版本，上一个版本就是`HEAD^`，上上一个版本就是`HEAD^^`，当然往上n个版本可以写成`HEAD~100`
+- `HEAD`表示当前分支版本，上一个版本就是`HEAD^`，上上一个版本就是`HEAD^^`，当然往上n个版本可以写成`HEAD~100`
 	- 回退/前进到某个版本：
 	`git reset --hard commit_id`
 - 不添加到暂存区的修改是不会提交的
@@ -52,5 +58,20 @@ Create and switch to a branch.
 `git reset HEAD a.txt`
 - 删除文件（需要提交到版本库）：
 `git rm a.txt`
+- 创建并切换到dev分支：
+`git checkout -b dev`
+等价于
+```
+git branch dev
+git checkout dev
+```
+- 查看所有分支，当前分支前会标`*`号：
+`git branch`
+- 合并dev到当前分支（一般是fast forward合并）：
+`git merge dev`
+	- 普通合并会生成一个提交，从分支图上可以看出合并信息
+	`git merge --no-ff -m "merge using no-ff" dev`
+- 删除dev分支：
+`git branch -d dev`
 
 
