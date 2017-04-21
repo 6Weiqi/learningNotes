@@ -60,7 +60,9 @@ Create and switch to a branch.
 `git rm a.txt`
 - 创建并切换到dev分支：
 `git checkout -b dev`
+
 等价于
+
 ```
 git branch dev
 git checkout dev
