@@ -39,11 +39,11 @@ Create and switch to a branch.
 `git log`
 	- 简化显示一行提交信息：
 	`git log --pretty=oneline`
-	- 查看分支图
+	- 查看分支图：
 	`git log --graph`
-		- 一行提交信息的分支图
+		- 一行提交信息的分支图：
 		`git log --graph --pretty=oneline`
-		- 继续简化，缩写`commit_id`的分支图
+		- 继续简化，缩写`commit_id`的分支图：
 		`git log --graph --pretty=oneling --abbrev-commit`
 - 查看之前的所有命令：
 `git reflog`
@@ -69,9 +69,24 @@ git checkout dev
 `git branch`
 - 合并dev到当前分支（一般是fast forward合并）：
 `git merge dev`
-	- 普通合并会生成一个提交，从分支图上可以看出合并信息
+	- 普通合并会生成一个提交，从分支图上可以看出合并信息：
 	`git merge --no-ff -m "merge using no-ff" dev`
-- 删除dev分支：
+- 删除**合并过的**dev分支：
 `git branch -d dev`
+- 删除**未合并过的**分支
+`git branch -D <name>`
+- 储藏工作区未添加到暂存区/提交的文件，以便之后恢复：
+`git stash`
+- 查看储藏列表：
+`git stash list`
+- 恢复最近一次储藏的内容，但恢复后不会删除：
+`git stash apply`
+	- 恢复某一次储藏内容：
+	`git stash apply stash_id`
+- 删除储藏内容（删除某一次同上）：
+`git stash drop`
+- 恢复并删除最近一次储藏内容：
+`git stash pop`
+
 
 
