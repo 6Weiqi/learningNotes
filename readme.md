@@ -42,15 +42,15 @@ Create and switch to a branch.
 - 查看之前的所有命令：
 `git reflog`
 
-- `HEAD`表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上n个版本可以写成HEAD~100
+- `HEAD`表示当前版本，上一个版本就是`HEAD^`，上上一个版本就是`HEAD^^`，当然往上n个版本可以写成`HEAD~100`
 	- 回退/前进到某个版本：
 	`git reset --hard commit_id`
-- 不添加到暂存区是不会提交的
+- 不添加到暂存区的修改是不会提交的
 - 丢弃工作区的修改。如果文件已添加到暂存区后又进行修改，那么就回到添加到暂存区的状态；如果文件还未放到暂存区，就回到当前版本：
 `git checkout -- a.txt`
-- 丢弃暂存区的修改（unastage）
+- 丢弃暂存区的修改（unstage）：
 `git reset HEAD a.txt`
-- 删除文件（需要提交到版本库）
+- 删除文件（需要提交到版本库）：
 `git rm a.txt`
 
 
