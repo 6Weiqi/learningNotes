@@ -55,7 +55,8 @@ Create and switch to a branch.
 		`git log --graph --pretty=oneling --abbrev-commit`
 - 查看之前的所有命令：
 `git reflog`
-## 分支和版本
+## 版本穿梭和分支
+### 版本穿梭
 - `HEAD`表示当前分支版本，上一个版本就是`HEAD^`，上上一个版本就是`HEAD^^`，当然往上n个版本可以写成`HEAD~100`
 	- 回退/前进到某个版本：
 	`git reset --hard commit_id`
@@ -66,6 +67,19 @@ Create and switch to a branch.
 `git reset HEAD a.txt`
 - 删除文件（需要提交到版本库）：
 `git rm a.txt`
+- 储藏工作区未添加到暂存区/提交的文件，以便之后恢复：
+`git stash`
+- 查看储藏列表：
+`git stash list`
+- 恢复最近一次储藏的内容，但恢复后不会删除：
+`git stash apply`
+	- 恢复某一次储藏内容：
+	`git stash apply stash_id`
+- 删除储藏内容（删除某一次同上）：
+`git stash drop`
+- 恢复并删除最近一次储藏内容：
+`git stash pop`
+### 分支
 - 创建并切换到dev分支：
 `git checkout -b dev`
 
@@ -85,20 +99,17 @@ git checkout dev
 	`git merge --no-ff -m "merge using no-ff" dev`
 - 删除**合并过的**dev分支：
 `git branch -d dev`
-- 删除**未合并过的**分支
+- 删除**未合并过的**分支：
 `git branch -D <name>`
-- 储藏工作区未添加到暂存区/提交的文件，以便之后恢复：
-`git stash`
-- 查看储藏列表：
-`git stash list`
-- 恢复最近一次储藏的内容，但恢复后不会删除：
-`git stash apply`
-	- 恢复某一次储藏内容：
-	`git stash apply stash_id`
-- 删除储藏内容（删除某一次同上）：
-`git stash drop`
-- 恢复并删除最近一次储藏内容：
-`git stash pop`
-
-
-
+### 标签
+- [标签是一个有意义的名字，与某个版本对应，也方便查找](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013762144381812a168659b3dd4610b4229d81de5056cc000)
+- 查看所有标签：
+`git tag`
+	- 给*最新提交*打标签：
+	`git tag tag_name`
+	- 给*指定提交*打标签：
+	`git tag tag_name commit_id`
+	- 创建带有说明的标签，用`-a`指定标签名，`-m`指定说明文字：
+	`git tag -a tag_name -m "tag message" [commit_id]`
+- 查看指定标签信息：
+`git show tag_name`
