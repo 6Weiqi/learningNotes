@@ -33,3 +33,24 @@ Create and switch to a branch.
 `git status`
 - 查看某个文件的修改情况：
 `git diff a.txt`
+	- 查看工作区和当前版本（HEAD）某个文件的区别
+	`git diff HEAD -- a.txt`
+- 查看历史提交信息：
+`git log`
+	- 简化输出信息：
+	`git log --pretty=oneline`
+- 查看之前的所有命令：
+`git reflog`
+
+- `HEAD`表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上n个版本可以写成HEAD~100
+	- 回退/前进到某个版本：
+	`git reset --hard commit_id`
+- 不添加到暂存区是不会提交的
+- 丢弃工作区的修改。如果文件已添加到暂存区后又进行修改，那么就回到添加到暂存区的状态；如果文件还未放到暂存区，就回到当前版本：
+`git checkout -- a.txt`
+- 丢弃暂存区的修改（unastage）
+`git reset HEAD a.txt`
+- 删除文件（需要提交到版本库）
+`git rm a.txt`
+
+
