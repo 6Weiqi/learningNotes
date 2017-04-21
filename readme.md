@@ -33,7 +33,7 @@ Create and switch to a branch.
 - 将a文件添加到暂存区（stage），可以一次add多个文件，文件间用空格隔开：
 ```
 	git add a
-	git add b c.md d.java e.c
+	git add b c.md Util.java main.c
 ```
 - 将之前add的所有文件提交到仓库，`-m<message>`表示提交的说明：
 `git commit -m "I have a dream..."`
@@ -105,9 +105,9 @@ git checkout dev
 - [标签是一个有意义的名字，与某个版本对应，也方便查找](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013762144381812a168659b3dd4610b4229d81de5056cc000)
 - 查看所有标签：
 `git tag`
-	- 给*最新提交*打标签：
+	- 给**最新提交**打标签：
 	`git tag tag_name`
-	- 给*指定提交*打标签：
+	- 给**指定提交**打标签：
 	`git tag tag_name commit_id`
 	- 创建带有说明的标签，用`-a`指定标签名，`-m`指定说明文字：
 	`git tag -a tag_name -m "tag message" [commit_id]`
