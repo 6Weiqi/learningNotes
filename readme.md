@@ -126,16 +126,16 @@ Create and switch to a branch.
 ## 忽略特殊文件
 - [在工作区的根目录下创建一个`.gitignore`文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013758404317281e54b6f5375640abbb11e67be4cd49e0000)。
 忽略文件的原则是：
-1. 忽略操作系统自动生成的文件，比如缩略图等；
-2. 忽略编译生成的中间文件、可执行文件等，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如Java编译产生的.class文件；
-3. 忽略带有敏感信息的配置文件，比如存放口令的配置文件。
+	1. 忽略操作系统自动生成的文件，比如缩略图等；
+	2. 忽略编译生成的中间文件、可执行文件等，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如Java编译产生的`.class`文件；
+	3. 忽略带有敏感信息的配置文件，比如存放口令的配置文件。
 - [GitHub已经为我们准备了各种配置文件，只需要组合一下就可以使用了](https://github.com/github/gitignore)
 - 配置完成后将`.gitignore`加入版本库
 - 检查某个文件是否被忽略：`git check-ignore -v <file>`
 ## 配置别名
 - 用`st`表示`status`：`git config --global alias.st status`
 	- `--global`表示全局参数，也就是这些命令应用于这台电脑的所有Git仓库，对应的配置文件为用户主目录下的`.gitconfig`；而每个仓库的配置文件都放在`.git/config`中
-	- 用`last`表示`log -1`：`git config --global alias.last **'**log -1**'**`
+	- 用`last`表示`log -1`：`git config --global alias.last 'log -1'`
 	- 为了更清楚地展现每次的提交和分支情况，可以：`alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"`
 
 	
