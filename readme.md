@@ -29,6 +29,7 @@ Git tracks changes of files.
 ### Github
 - Watch:Watch 了某个项目，那么以后只要这个项目有任何更新，你都会第一时间收到关于这个项目的通知提醒
 - Fork(衍生):希望在别人的开源项目上做改进，可以 Fork 到自己的仓库
+	- [Fork 一个仓库后，怎么同步原仓库的更新？](https://gaohaoyang.github.io/2015/04/12/Syncing-a-fork/)
 - Pull request:希望自己的改进能被原作者加入他的仓库，可以发起 Pull request，等待原作者的接受
 ## 基本
 - 初始化一个仓库：
