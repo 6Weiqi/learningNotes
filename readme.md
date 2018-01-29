@@ -1,13 +1,14 @@
-Git is a distributed version control system.
+# Android 事件分发机制
+## 参考 [GcsSloop](http://www.gcssloop.com/customview/dispatch-touchevent-theory) 和[吴小龙同学](http://wuxiaolong.me/2015/12/19/MotionEvent/)
+- 总的来说，事件的分发（dispatchTouchEvent）顺序是从 Activity/父 view 到子 view，而事件的处理（onTouchEvent）顺序则是从子 view 传回 Activity/父 view
 
-Git is free software distributed under the GPL.
+- 拦截、处理方法返回的 `boolean` 表示事件是否被消费
+	- 一旦拦截，事件便不在分发给它的子 view，事件处理直接从它开始
+	- 一个 view 一旦处理了事件，便不再交给父 view 处理，如果 Activity 仍未处理事件，事件才会被抛弃
+> ViewGroup 比 View 多了一个拦截（onInterceptTouchEvent）方法，先分发再拦截
 
-Git has a mutable index called stage.
 
-Git tracks changes of files.
-
-感谢[stormzhang](http://stormzhang.com/github/2016/06/19/learn-github-from-zero-summary/)和[廖老师](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
-# git学习笔记
+# git学习笔记（感谢 [stormzhang](http://stormzhang.com/github/2016/06/19/learn-github-from-zero-summary/) 和[廖老师](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)）
 ## 远程库和Github
 ### 远程库
 - 克隆远程仓库到本地：
