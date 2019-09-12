@@ -1,14 +1,18 @@
+[TOC]
+
 # Android 事件分发机制
-## 参考 [GcsSloop](http://www.gcssloop.com/customview/dispatch-touchevent-theory) 和[吴小龙同学](http://wuxiaolong.me/2015/12/19/MotionEvent/)
-- 总的来说，事件的分发（dispatchTouchEvent）顺序是从 Activity/父 view 到子 view，而事件的处理（onTouchEvent）顺序则是从子 view 传回 Activity/父 view
+
+> 参考 [GcsSloop](http://www.gcssloop.com/customview/dispatch-touchevent-theory) 和[吴小龙同学](http://wuxiaolong.me/2015/12/19/MotionEvent/)
+
+- 总的来说，事件的分发（`dispatchTouchEvent`）顺序是从 `Activity`/父 `View` 到子 `View`，而事件的处理（`onTouchEvent`）顺序则是从子 `View` 传回 `Activity`/父 `View`
 
 - 拦截、处理方法返回的 `boolean` 表示事件是否被消费
-	- 一旦拦截，事件便不在分发给它的子 view，事件处理直接从它开始
-	- 一个 view 一旦处理了事件，便不再交给父 view 处理，如果 Activity 仍未处理事件，事件才会被抛弃
-> ViewGroup 比 View 多了一个拦截（onInterceptTouchEvent）方法，先分发再拦截
-
+	- 一旦拦截，事件便不在分发给它的子 `View`，事件处理直接从它开始
+	- 一个 `View` 一旦处理了事件，便不再交给父 `View` 处理，如果 `Activity` 仍未处理事件，事件才会被抛弃
+> `ViewGroup` 比 `View` 多了一个拦截（`onInterceptTouchEvent`）方法，先分发再拦截
 
 # git学习笔记（感谢 [stormzhang](http://stormzhang.com/github/2016/06/19/learn-github-from-zero-summary/) 和[廖老师](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)）
+
 ## 远程库和Github
 ### 远程库
 - 克隆远程仓库到本地：
@@ -19,16 +23,16 @@
 	`git push -u origin master`
 - 从本地推送到远程（`origin`）分支：
 `git push origin <branch_name>`
-- 从远程拉取到本地，一般先pull再push：
+- 从远程拉取到本地，一般先 pull 再 push：
 `git pull origin <branch_name>`
 - 查看所有远程仓库：
 `git remote`
 	- 显示详细信息：
 	`git remote -v`
-- 将远程dev分支迁到本地dev分支：
+- 将远程 dev 分支迁到本地 dev 分支：
 `git checkout -b dev origin/dev`
 ### Github
-- Watch:Watch 了某个项目，那么以后只要这个项目有任何更新，你都会第一时间收到关于这个项目的通知提醒
+- Watch：<kbd>Watch</kbd> 了某个项目，那么以后只要这个项目有任何更新，你都会第一时间收到关于这个项目的通知提醒
 - Fork(衍生):希望在别人的开源项目上做改进，可以 Fork 到自己的仓库
 	- [Fork 一个仓库后，怎么同步原仓库的更新？](https://gaohaoyang.github.io/2015/04/12/Syncing-a-fork/)
 - Pull request:希望自己的改进能被原作者加入他的仓库，可以发起 Pull request，等待原作者的接受
@@ -137,10 +141,37 @@
 - [GitHub已经为我们准备了各种配置文件，只需要组合一下就可以使用了](https://github.com/github/gitignore)
 - 配置完成后将`.gitignore`加入版本库
 - 检查某个文件是否被忽略：`git check-ignore -v <file>`
+
 ## 配置别名
 - 用`st`表示`status`：`git config --global alias.st status`
 	- `--global`表示全局参数，也就是这些命令应用于这台电脑的所有Git仓库，对应的配置文件为用户主目录下的`.gitconfig`；而每个仓库的配置文件都放在`.git/config`中
 	- 用`last`表示`log -1`：`git config --global alias.last 'log -1'`
 	- 为了更清楚地展现每次的提交和分支情况，可以：`alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"`
 
-	
+# 前端知识点
+
+* jQuery
+    - `class` 属性用 `.`
+    - `id` 属性用 `#` 来引用
+    
+* JavaScript
+
+    * 真「_一切皆对象_」，`number`、`string`、`boolean` 都是对象的类型
+    * 变量名是大小写英文、数字、`$` 和 `_` 的组合，且不能用数字开头，也不能是 JavaScript 的关键字
+    * 函数
+        * 函数名命名同变量名
+        * 函数也是一个对象，而**函数名可以视为指向该函数的变量**
+        * 函数内可以再定义函数。函数内定义的函数，`this` 指向 `undefined` 了（在非 strict 模式下，它重新指向全局对象 `window`！）
+        * 如果没有 `return` 语句，函数执行完毕后也会返回结果，只是结果为 `undefined`
+        * 关键字 `arguments`
+            * 只在函数内部起作用，并且永远指向当前函数的调用者传入的所有参数。`arguments` 类似 `Array` 但它不是一个 `Array`
+        * 高阶函数：将**函数作为参数**接收的函数
+        * 闭包：函数中，将__函数作为返回值__的结构。内部函数可以引用外部函数的参数和局部变量，当外部函数返回函数时，相关参数和变量都保存在返回的函数中
+        * `Array`的 `sort()` 方法会直接对 `Array` 进行修改，它返回的结果仍是当前 `Array`
+    * JavaScript 把 `null`、 `undefined`、`0`、`NaN` 和空字符串 `''` 视为 `false`，其他值一概视为 `true`
+
+    * [*ECMAScript* 是几个公司联合 _ECMA_（**European Computer Manufacturers Association**）组织定制了JavaScript 语言的标准。最新版 _ECMAScript 6_ 标准（简称*ES6*）已经在 2015 年 6 月正式发布了，所以，讲到 JavaScript 的版本，实际上就是说它实现了 *ECMAScript* 标准的哪个版本。](https://www.liaoxuefeng.com/wiki/1022910821149312/1023020745357888)
+
+* CSS（**C**ascading **S**tyle **S**heet）
+
+    ![](https://mdn.mozillademos.org/files/9443/box-model.png)
