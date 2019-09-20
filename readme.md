@@ -9,7 +9,8 @@
 - 拦截、处理方法返回的 `boolean` 表示事件是否被消费
 	- 一旦拦截，事件便不在分发给它的子 `View`，事件处理直接从它开始
 	- 一个 `View` 一旦处理了事件，便不再交给父 `View` 处理，如果 `Activity` 仍未处理事件，事件才会被抛弃
-> `ViewGroup` 比 `View` 多了一个拦截（`onInterceptTouchEvent`）方法，先分发再拦截
+    
+    >  `ViewGroup` 比 `View` 多了一个拦截（`onInterceptTouchEvent`）方法，先分发再拦截
 
 # git学习笔记（感谢 [stormzhang](http://stormzhang.com/github/2016/06/19/learn-github-from-zero-summary/) 和[廖老师](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)）
 
@@ -40,7 +41,7 @@
 - 初始化一个仓库：
 `git init`
 - 将a文件添加到暂存区（stage），可以一次add多个文件，文件间用空格隔开：
-```
+```shell
 	git add a
 	git add b c.md Util.java main.c
 ```
@@ -67,7 +68,7 @@
 `git reflog`
 ## 版本穿梭和分支
 ### 版本穿梭
-- `HEAD`表示当前分支版本，上一个版本就是`HEAD^`，上上一个版本就是`HEAD^^`，当然往上n个版本可以写成`HEAD~100`
+- `HEAD`表示当前分支版本，上一个版本就是`HEAD^`，上上一个版本就是`HEAD^^`，当然往上n个版本可以写成`HEAD~n`
 	- 回退/前进到某个版本：
 	`git reset --hard <commit_id>`
 - 不添加到暂存区的修改是不会提交的
@@ -107,7 +108,7 @@
 `git merge dev`
 	- 普通合并会生成一个提交，从分支图上可以看出合并信息：
 	`git merge --no-ff -m "merge using no-ff" dev`
-- 删除**合并过的**dev分支：
+- 删除**合并过的** dev 分支：
 `git branch -d dev`
 - 删除**未合并过的**分支：
 `git branch -D <name>`
@@ -147,6 +148,20 @@
 	- `--global`表示全局参数，也就是这些命令应用于这台电脑的所有Git仓库，对应的配置文件为用户主目录下的`.gitconfig`；而每个仓库的配置文件都放在`.git/config`中
 	- 用`last`表示`log -1`：`git config --global alias.last 'log -1'`
 	- 为了更清楚地展现每次的提交和分支情况，可以：`alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"`
+
+## rebase
+* [让提交记录看起来更整齐](https://www.liaoxuefeng.com/wiki/896043488029600/1216289527823648)
+  
+  * pull 时用 rebase 整理提交记录，不至于出现 merge 的提交记录：`git config --global pull.rebase true`
+  
+* [合并多次提交记录](http://jartto.wang/2018/12/11/git-rebase/)
+  
+  * [如何在 IDEA 上合并多次提交记录？](https://www.zhihu.com/question/56624823)
+  
+# 数据库相关
+
+- [`row_number() OVER (PARTITION BY col1 ORDER BY col2)` 用法：](https://www.cnblogs.com/fxgachiever/archive/2010/09/15/1826792.html)根据 col1 分组，在分组内部根据 col2 排序，返回每组内部排序后的行号（组内行号连续唯一)
+- [`rank() OVER (PARTITION BY col1 ORDER BY col2)`](https://www.cnblogs.com/linJie1930906722/p/6036053.html) 与上一个的区别在于：相同 col2 数据的行号是相同的（_e.g._ 相同分数的排名并列）
 
 # 前端知识点
 
