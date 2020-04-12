@@ -15,7 +15,21 @@
 # git学习笔记（感谢 [stormzhang](http://stormzhang.com/github/2016/06/19/learn-github-from-zero-summary/) 和[廖老师](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)）
 
 ## 远程库和Github
+### SSH key
+
+* [为不同账户设置不同 SSH key](https://www.jianshu.com/p/c30e1f787b92)
+
+* [为不同项目设置不同用户名和邮箱](https://blog.csdn.net/QPC908694753/article/details/79237748)
+
+  * 取消全局的用户名和邮箱
+
+    ```bash
+    git config --global --unset user.name
+    git config --global --unset user.email
+    ```
+
 ### 远程库
+
 - 克隆远程仓库到本地：
 `git clone git@server-name:path/repo-name.git`
 - 如果本地仓库需要关联远程仓库：
@@ -155,13 +169,19 @@
   * pull 时用 rebase 整理提交记录，不至于出现 merge 的提交记录：`git config --global pull.rebase true`
   
 * [合并多次提交记录](http://jartto.wang/2018/12/11/git-rebase/)
-  
   * [如何在 IDEA 上合并多次提交记录？](https://www.zhihu.com/question/56624823)
   
 # 数据库相关
 
-- [`row_number() OVER (PARTITION BY col1 ORDER BY col2)` 用法：](https://www.cnblogs.com/fxgachiever/archive/2010/09/15/1826792.html)根据 col1 分组，在分组内部根据 col2 排序，返回每组内部排序后的行号（组内行号连续唯一)
+## oracle
+
+*  [`row_number() OVER (PARTITION BY col1 ORDER BY col2)` 用法：](https://www.cnblogs.com/fxgachiever/archive/2010/09/15/1826792.html)根据 col1 分组，在分组内部根据 col2 排序，返回每组内部排序后的行号（组内行号连续唯一)
+
 - [`rank() OVER (PARTITION BY col1 ORDER BY col2)`](https://www.cnblogs.com/linJie1930906722/p/6036053.html) 与上一个的区别在于：相同 col2 数据的行号是相同的（_e.g._ 相同分数的排名并列）
+-  
+  - 查询所有定时任务：`user_jobs` 表
+  - 查询某个表所涉及的存储过程：`select * from user_source s WHERE s.text LIKE '%TABLE_NAME%'`
+- [更新、插入时卡死解决方法](https://blog.csdn.net/itmyhome1990/article/details/81745990)
 
 # 前端知识点
 
@@ -190,3 +210,74 @@
 * CSS（**C**ascading **S**tyle **S**heet）
 
     ![](https://mdn.mozillademos.org/files/9443/box-model.png)
+
+# maven 通过命令手动导入 jar 包
+
+`mvn install:install-file -Dfile=<path-to-file> -DgroupId=<group-id> -DartifactId=<artifact-id> -Dversion=<version> -Dpackaging=jar`
+
+# mac 下获取文件的 md5 与 sha 值
+
+> 终端下：
+
+* `md5 filepath ` 就会输出对应的 MD5 值
+* `shasum filepath`  就会输出对应的 sha1 值，并且 `shasum` 命令默认检测 SHA1 值，而通过参数 `-a` 可以修改为 224、256、384 或 512
+
+# Chrome 开发者工具快捷键
+
+* 快速跳转到某一行：<kbd>control </kbd> + <kbd>G</kbd>
+
+# terminal 一键启动、关闭 redis
+
+* 前台启动 redis：`redis-server `
+
+* 后台启动 redis：`brew services start redis` 
+
+  - 相关命令：
+
+    > `[sudo] brew services list`
+    >
+    > List all running services for the current user (or root).
+    >
+    > 
+    >
+    > `[sudo] brew services run (formula|—all)`
+    >
+    > Run the service formula without registering to launch at login (or boot).
+    >
+    > 
+    >
+    > `[sudo] brew services start (formula|—all)`
+    >
+    > Start the service formula immediately and register it to launch at login (or
+    >
+    > boot).
+    >
+    > 
+    >
+    > `[sudo] brew services stop (formula|—all)`
+    >
+    > Stop the service formula immediately and unregister it from launching at login(or boot).
+    >
+    > 
+    >
+    > `[sudo] brew services restart (formula|—all)`
+    >
+    > Stop (if necessary) and start the service formula immediately and register it to launch at login (or boot).
+    >
+    > 
+    >
+    > `[sudo] brew services cleanup`
+    >
+    > Remove all unused services.
+
+  - 查看端口占用、杀死进程
+
+    > - [sudo] lsof -i -P | grep -i (端口号)
+    >
+    >   > lsof = list open file
+    >
+    > - `lsof -i:(端口号)`
+    >
+    > - 杀死进程：`kill pid`
+
+* 关闭 redis：`redis-cli shutdown`
