@@ -33,7 +33,7 @@
 - 克隆远程仓库到本地：
 `git clone git@server-name:path/repo-name.git`
 - 如果本地仓库需要关联远程仓库：
-`git remote add origin git@server-name:path/repo-name.git`
+	`git remote add origin git@server-name:path/repo-name.git`
 	- 关联后，第一次推送时，加上`-u`是为了将本地和远程`master`分支关联起来，方便以后的推送和拉取：
 	`git push -u origin master`
 - 从本地推送到远程（`origin`）分支：
@@ -41,16 +41,16 @@
 - 从远程拉取到本地，一般先 pull 再 push：
 `git pull origin <branch_name>`
 - 查看所有远程仓库：
-`git remote`
+	`git remote`
 	- 显示详细信息：
 	`git remote -v`
 - 将远程 dev 分支迁到本地 dev 分支：
 `git checkout -b dev origin/dev`
 ### Github
 - Watch：<kbd>Watch</kbd> 了某个项目，那么以后只要这个项目有任何更新，你都会第一时间收到关于这个项目的通知提醒
-- Fork(衍生):希望在别人的开源项目上做改进，可以 Fork 到自己的仓库
+- Fork(衍生)：希望在别人的开源项目上做改进，可以 Fork 到自己的仓库
 	- [Fork 一个仓库后，怎么同步原仓库的更新？](https://gaohaoyang.github.io/2015/04/12/Syncing-a-fork/)
-- Pull request:希望自己的改进能被原作者加入他的仓库，可以发起 Pull request，等待原作者的接受
+- Pull request：希望自己的改进能被原作者加入他的仓库，可以发起 Pull request，等待原作者的接受
 ## 基本
 - 初始化一个仓库：
 `git init`
@@ -65,11 +65,11 @@
 - 查看当前仓库状态：
 `git status`
 - 查看某个文件的修改情况：
-`git diff a.txt`
+	`git diff a.txt`
 	- 查看工作区和当前版本（HEAD）某个文件的区别
 	`git diff HEAD -- a.txt`
 - 查看历史提交信息：
-`git log`
+	`git log`
 	- 简化一行显示，加上：
 	`--pretty=oneline`
 	- 缩写`commit_id`，加上：
@@ -97,7 +97,7 @@
 - 查看储藏列表：
 `git stash list`
 - 恢复最近一次储藏的内容，但恢复后不会删除：
-`git stash apply`
+	`git stash apply`
 	- 恢复某一次储藏内容：
 	`git stash apply stash_id`
 - 删除储藏内容（删除某一次同上）：
@@ -106,7 +106,7 @@
 `git stash pop`
 ### 分支
 - 创建并切换到dev分支：
-`git checkout -b dev`
+	`git checkout -b dev`
 
 	等价于
 
@@ -119,7 +119,7 @@
 - 查看远程所有分支：
 `git branch -r`
 - 合并dev到当前分支（一般是fast forward合并）：
-`git merge dev`
+	`git merge dev`
 	- 普通合并会生成一个提交，从分支图上可以看出合并信息：
 	`git merge --no-ff -m "merge using no-ff" dev`
 - 删除**合并过的** dev 分支：
@@ -129,7 +129,7 @@
 ## 标签
 - [标签是一个有意义的名字，与某个版本对应，也方便查找](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013762144381812a168659b3dd4610b4229d81de5056cc000)
 - 查看所有标签：
-`git tag`
+	`git tag`
 	- 给**最新提交**打标签：
 	`git tag <tag_name>`
 	- 给**指定提交**打标签：
@@ -141,7 +141,7 @@
 - 删除本地标签：
 `git tag -d <tag_name>`
 - 推送某个标签到远程：
-`git push origin <tag_name>`
+	`git push origin <tag_name>`
 	- 推送所有未推送的标签到远程：
 	`git push origin --tags`
 - 删除远程标签：
@@ -149,7 +149,7 @@
 	2. 删除远程标签：`git push origin :refs/tags/<tag_name>`
 ## 忽略特殊文件
 - [在工作区的根目录下创建一个`.gitignore`文件，然后把要忽略的文件名填进去，Git就会自动忽略这些文件](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013758404317281e54b6f5375640abbb11e67be4cd49e0000)。
-忽略文件的原则是：
+	忽略文件的原则是：
 	1. 忽略操作系统自动生成的文件，比如缩略图等；
 	2. 忽略编译生成的中间文件、可执行文件等，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如Java编译产生的`.class`文件；
 	3. 忽略带有敏感信息的配置文件，比如存放口令的配置文件。
@@ -170,8 +170,17 @@
   
 * [合并多次提交记录](http://jartto.wang/2018/12/11/git-rebase/)
   * [如何在 IDEA 上合并多次提交记录？](https://www.zhihu.com/question/56624823)
-  
+
+## cherry-pick
+
+- [将某个分支的一个或多个提交转移到另一个分支](https://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html)
+
 # 数据库相关
+
+## 一些概念
+
+* DDL (**Data Definition Language**)：不需要提交的操作，不包括 `select`
+* DML(**Data Manipulation Language**)：需要提交的操作，包括 `select`
 
 ## oracle
 
@@ -183,6 +192,264 @@
   - 查询某个表所涉及的存储过程：`select * from user_source s WHERE s.text LIKE '%TABLE_NAME%'`
 - [更新、插入时卡死解决方法](https://blog.csdn.net/itmyhome1990/article/details/81745990)
 
+# Java 知识点
+
+## switch 语法
+
+从 jdk 1.5 开始，可以使用枚举类型；jdk 1.7 开始，可以使用 `String`；不能使用 `long`
+
+***
+
+## 包装类型的缓存池
+
+* 包装类型的 `valueOf` 方法会使用指定范围内缓存池的值
+|    类型     |      缓存数值范围      |
+  | :---------: | :--------------------: |
+  |  `Boolean`  |   ```true、false```    |
+  |   `Byte`    |          不限          |
+  |   `Short`   |       -128～127        |
+  |  `Integer`  |       -128～127        |
+  | `Character` | ```\u0000 ~ \u0007F``` |
+
+## ```+=、-=、*=、/=``` 
+
+>  自动将计算结果向下转型
+
+```java
+short s1 = 1;
+// 相当于 s1 = (short)(s1 + 1);
+s1 += 1;
+```
+
+## [重写、重载](https://pdai.tech/md/java/basic/java-basic-lan-basic.html#%E9%87%8D%E5%86%99%E4%B8%8E%E9%87%8D%E8%BD%BD)
+
+## `hashCode` 方法
+
+```java
+public native int hashCode();
+```
+
+来自 `Object` 类，返回散列值；等价的两个对象散列值一定相同，但是散列值相同的两个对象不一定等价。即，重写 `equals` 方法时应当总是重写 `hashCode` 方法
+
+## `clone` 方法
+
+```java
+protected native Object clone() throws CloneNotSupportedException;
+```
+
+> 来自 `Object` 类
+
+* 浅拷贝
+  拷贝对象和原始对象引用自同一个对象
+* 深拷贝
+  拷贝对象和原始对象引用自不同对象
+
+## classpath
+
+JVM 用到的一个环境变量，告诉 JVM 如何搜索 class 文件；classpath 是**一组**目录的集合，目录格式和操作系统有关；推荐在 JVM 启动时设置 classpath
+
+## 异常
+
+全都继承自 `Throwable` **类**，进一步分为 `Error` 和 `Exception` 类。
+
+`Error` 表示 JVM 无法处理的错误，如：
+
+- `OutOfMemoryError`：内存耗尽
+- `NoClassDefFoundError`：无法加载某个 Class
+- `StackOverflowError`：栈溢出
+
+`Exception` 为应该捕获并处理的异常，分为可检查（checked）异常和不检查（unchecked）异常。
+
+可检查异常在源代码里必须显式地进行捕获处理，这是编译期检查的一部分；
+
+不检查异常就是所谓的运行时异常（`RuntimeException`），类似 `NullPointerException`、`ArrayIndexOutOfBoundsException` 之类，通常是可以编码避免的逻辑错误，具体根据需要来判断是否需要捕获，并不会在编译期强制要求
+
+* 异常的屏蔽
+
+  在 `finally` 语句和  `catch` 语句都会抛出异常的情况下，异常信息只有 `finally` 语句中的，`catch` 语句中的异常称为被屏蔽的异常；要获取所有的异常信息，需要调用 `Throwable.addSuppressed()` ，添加被屏蔽的异常，然后在 `finally` 中抛出
+
+### [断言关键字](https://www.liaoxuefeng.com/wiki/1252599548343744/1264740093521088)
+
+```java
+public static void main(String[] args) {
+    double x = Math.abs(-123.45);
+    assert x >= 0;
+    System.out.println(x);
+}
+```
+
+> 语句 `assert x >= 0;` 即为断言，断言条件 `x >= 0` 预期为 `true`。如果计算结果为 `false`，则断言失败，抛出 `AssertionError`。
+
+使用 `assert` 语句时，还可以添加一个可选的断言消息：
+
+```
+assert x >= 0 : "x must >= 0";
+```
+
+这样，断言失败的时候，`AssertionError` 会带上消息 `x must >= 0`，更加便于调试。
+
+Java 断言的特点是：断言失败时会抛出 `AssertionError`，导致程序结束退出。因此，断言不能用于可恢复的程序错误，只应该用于开发和测试阶段。
+
+ JVM 默认关闭断言指令，即遇到 `assert` 语句就自动忽略了，不执行
+
+## 泛型
+
+> [Java 采取了**“伪泛型”**的策略，语法上支持泛型，但在编译阶段会进行**“泛型擦除”**，即，将所有的泛型表示都替换为具体的类型（泛型的上限），就像没有泛型一样](https://pdai.tech/md/java/basic/java-basic-x-generic.html#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%BC%95%E5%85%A5%E6%B3%9B%E5%9E%8B)
+
+* 泛型的上下限
+
+  * `<? extends A>` 表示类型为（继承） A 的子类，可以理解为类型至多是 A，即，该泛型的上限为 A
+  * `<? super A>` 表示类型为 A 的父类，可以理解为类型至少是 A，即，该泛型的下限为 A，上限为 `Object`
+
+  > `?` 为无限制通配符
+
+## 注解
+
+通过 `@interface` 关键字来定义注解
+
+## 反射
+
+> 通过 `Class` 实例获取类（class）信息的方法称为反射。类是由 JVM 在读取到一种类时动态加载（用到时才加载）进内存的，每加载一种类，JVM 就会创建一个这个类的 `Class` 类型实例。
+
+要判断一个向上转型是否成立，可以调用：
+
+```java
+// Number n = ?
+Number.class.isAssignableFrom(Integer.class); // true，因为 Integer 可以赋值给 Number
+```
+
+### 动态代理
+
+> [对于接口而言；不编写实现类，在运行期动态创建接口对象；原理是 JVM 在运行期通过反射创建实现类（字节码）并加载](https://www.liaoxuefeng.com/wiki/1252599548343744/1264804593397984)
+
+## SPI 机制
+
+> SPI（Service Provider Interface），是 JDK 内置的一种服务发现机制，为接口寻找服务实现。调用方提供接口，服务提供方实现接口，将接口与实现分离，达到解耦的目的。
+>
+> API 中的接口和实现都在一起
+
+服务提供方需要在 classpath 下的 `META-INF/services/` 目录里创建一个以服务接口全路径命名的文件，这个文件里的内容就是这个接口的具体的实现类路径，调用方通过服务发现，加载实现类，就可以使用该服务了。JDK 中查找服务的实现的工具类是：`java.util.ServiceLoader`
+
+### 应用
+
+#### JDBC DriverManager
+
+JDBC 定义了数据库驱动的接口（标准），数据库厂商提供驱动的实现
+
+#### Commons Logging
+
+Commons Logging 提供了一套接口，根据情况使用不同的日志实现，自动搜索并使用 Log4j，如果没有找到 Log4j，再使用 JDK 自带的 Logging
+
+#### SLF4J
+
+SLF4J 类似于 Commons Logging，也是一个日志接口，而 Logback 类似于 Log4j，是一个日志的实现
+
+## 集合
+
+分类两大类，`Collection<E>` 接口和 `Map<K, V>` 接口
+
+### List<E>
+
+`Collection` 的子接口；有序，遍历 `List` 尽量使用 `Iterator<E>` 接口来访问，因为不同的 `List` 实现类返回的 `Iterator<E>` 对象实现也不同，但总有最高的访问效率；用 `for each` 循环遍历 `Iterable<E>`  实现类时，会自动使用 `Iterator<E>` 遍历。
+
+#### ArrayList
+
+底层数组实现，添加元素时容量不足会自动扩容
+
+> [数组进行扩容时，会将老数组中的元素重新拷贝一份到新的数组中，每次数组容量的增长大约是其原容量的 1.5 倍。这种操作的代价是很高的，因此在实际使用时，我们应该尽量避免数组容量的扩张。当我们可预知要保存的元素的多少时，要在构造 ArrayList 实例时，就指定其容量，以避免数组扩容的发生。或者根据实际需求，通过调用 ensureCapacity 方法来手动增加 ArrayList 实例的容量。](https://pdai.tech/md/java/collection/java-collection-ArrayList.html)
+
+#### LinkedList
+
+既实现了 `List` 接口，又实现了 [`Deque`](#Deque) 接口，底层为双向链表，跟下标相关的操作都是下标越大，耗时越久
+
+### Map<K, V>
+
+接口，重复 key 的 value 会被覆盖；遍历 Map 可以使用：
+
+```java
+Map<String, Integer> map = new HashMap<>();
+for (Map.Entry<String, Integer> entry : map.entrySet()) {
+  String key = entry.getKey();
+  Integer value = entry.getValue();
+  // ...
+}
+```
+
+#### HashMap
+
+**无序**；底层通过大数组存储所有 value，根据 key 的哈希值计算出下标，空间换时间，数组容量不足时会自动扩容；不同 key 的哈希值相同时，通过链表进行存储，[在 Java8 中，当链表中的元素达到了 8 个时，会将链表转换为红黑树，在这些位置进行查找的时候可以降低时间复杂度为 O (logN)](https://pdai.tech/md/java/collection/java-map-HashMap&HashSet.html#java8-hashmap)
+
+####TreeMap
+
+在内部会对 key 按放入的顺序进行排序，`SortedMap` 接口的实现类，key 需要实现 `Comparable` 接口
+
+### Set
+
+接口，存储不重复的元素集合，相当于只存储 key，不存储 value 的 `Map`
+
+#### HashSet
+
+`HashMap` 的包装，无序
+
+#### TreeSet
+
+有序（按放入的顺序进行排序），`SortedSet` 接口的实现类，元素必须实现 `Comparable` 接口
+
+### Queue<E>
+
+先进先出，队首出队，队尾入队
+
+| 队列操作           | throw Exception | 返回 false 或 null |
+| :----------------- | :-------------- | ------------------ |
+| 添加元素到队尾     | add(E e)        | boolean offer(E e) |
+| 取队首元素并删除   | E remove()      | E poll()           |
+| 取队首元素但不删除 | E element()     | E peek()           |
+
+#### PriorityQueue
+
+优先级最高的，先出队，优先级高低根据 `Comparable` 或 `Comparator<E>` 接口决定
+
+#### Deque
+
+接口，对首、对尾都能出队、入队，双端队列（Double Ended Queue）
+
+|                    | queue                  | Deque                           |
+| :----------------- | :--------------------- | ------------------------------- |
+| 添加元素到队尾     | add(E e) / offer(E e)  | addLast(E e) / offerLast(E e)   |
+| 取队首元素并删除   | E remove() / E poll()  | E removeFirst() / E pollFirst() |
+| 取队首元素但不删除 | E element() / E peek() | E getFirst() / E peekFirst()    |
+| 添加元素到队首     | 无                     | addFirst(E e) / offerFirst(E e) |
+| 取队尾元素并删除   | 无                     | E removeLast() / E pollLast()   |
+| 取队尾元素但不删除 | 无                     | E getLast() / E peekLast()      |
+
+## JMM
+
+Java 内存模型；并发要满足三个要素：可见性、原子性、有序性。
+
+* 可见性：一个线程对共享变量的修改，另一个线程能立刻看到。
+* 原子性：一个或多个操作要么全部执行过程不会被打断，要么全不执行。
+* 有序性：执行顺序按代码的先后顺序，但为了提高性能，编译器、处理器会对指令做重排序，JMM 有相应的规则针对这两种重排序
+
+> Java 内存模型只保证了基本读取和赋值是原子性操作，如果要实现更大范围操作的原子性，可以通过 synchronized 和 Lock 来实现。由于 synchronized 和 Lock 能够保证任一时刻只有一个线程执行该代码块，从而保证了原子性。
+>
+> Java 提供了 volatile 关键字来保证可见性。当一个共享变量被 volatile 修饰时，它会保证修改的值会立即被更新到主存，当有其他线程需要读取时，它会去内存中读取新值。通过 synchronized 和 Lock 也能够保证可见性，synchronized 和 Lock 能保证同一时刻只有一个线程获取锁然后执行同步代码，并且在释放锁之前会将对变量的修改刷新到主存当中，因此可以保证可见性。
+>
+> Java 可以通过 volatile 关键字来保证一定的有序性。另外可以通过 synchronized 和 Lock 来保证有序性，很显然，synchronized 和 Lock 保证每个时刻是有一个线程执行同步代码，相当于是让线程顺序执行同步代码，自然就保证了有序性
+
+## IO
+
+> 以内存为中心。
+>
+> Input：从外部（文件、网络）**读**数据到内存中
+>
+> Output：从内存把数据**写**到外部
+
+* 字节流：InputStream/OutputStream，以 `byte` 为最小单位
+
+* 字符流：Reader/Writer，以 `char` 为最小单位
+
+# [Spring](Spring.md)
+
 # 前端知识点
 
 * jQuery
@@ -192,7 +459,9 @@
 * JavaScript
 
     * 真「_一切皆对象_」，`number`、`string`、`boolean` 都是对象的类型
+
     * 变量名是大小写英文、数字、`$` 和 `_` 的组合，且不能用数字开头，也不能是 JavaScript 的关键字
+
     * 函数
         * 函数名命名同变量名
         * 函数也是一个对象，而**函数名可以视为指向该函数的变量**
@@ -203,13 +472,55 @@
         * 高阶函数：将**函数作为参数**接收的函数
         * 闭包：函数中，将__函数作为返回值__的结构。内部函数可以引用外部函数的参数和局部变量，当外部函数返回函数时，相关参数和变量都保存在返回的函数中
         * `Array`的 `sort()` 方法会直接对 `Array` 进行修改，它返回的结果仍是当前 `Array`
+        
     * JavaScript 把 `null`、 `undefined`、`0`、`NaN` 和空字符串 `''` 视为 `false`，其他值一概视为 `true`
 
     * [*ECMAScript* 是几个公司联合 _ECMA_（**European Computer Manufacturers Association**）组织定制了JavaScript 语言的标准。最新版 _ECMAScript 6_ 标准（简称*ES6*）已经在 2015 年 6 月正式发布了，所以，讲到 JavaScript 的版本，实际上就是说它实现了 *ECMAScript* 标准的哪个版本。](https://www.liaoxuefeng.com/wiki/1022910821149312/1023020745357888)
 
+    * ```javascript
+        var s = "hello";
+        // 模版字符串
+        s = `${s} world`;
+        // ['hello']
+        s.split(',');
+        // ['h', 'e', 'l', 'l', 'o']
+        s.spilt('');
+        var arr = [1, 2, 3, 4];
+        // [3, 4, 5, 6]
+        arr = arr.map(a => a+2);
+        // 另一种写法，[5, 6, 7, 8]
+        arr = arr.map(function(x){
+          return x + 2;
+        });
+        // filter 过滤出满足条件的元素
+        // [6, 8]
+        arr.filter(a => a%2 === 0);
+        // 遍历数组
+        arr.forEach((ele, idx, arr) => {
+        });
+        // 数组拼接数组
+        // [6, 8, 6, 8]
+        arr.concat(arr);
+        ```
+
+    * [**展开语法**](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+
+        ```javascript
+        function sum(i, j){
+          return i+j;
+        }
+        var arr = [6, 8];
+        // 14
+        sum(...arr)
+        ```
+
+        
+
 * CSS（**C**ascading **S**tyle **S**heet）
 
     ![](https://mdn.mozillademos.org/files/9443/box-model.png)
+
+* 
 
 # maven 通过命令手动导入 jar 包
 
@@ -220,7 +531,10 @@
 > 终端下：
 
 * `md5 filepath ` 就会输出对应的 MD5 值
-* `shasum filepath`  就会输出对应的 sha1 值，并且 `shasum` 命令默认检测 SHA1 值，而通过参数 `-a` 可以修改为 224、256、384 或 512
+
+* `shasum filepath`  就会输出对应的 sha1 值，并且 `shasum` 命令**默认检测 SHA1 值**，而通过参数
+
+   `-a 224/256/384/512` 可以修改为 SHA224、SHA256、SHA384 或 SHA512
 
 # Chrome 开发者工具快捷键
 
@@ -281,3 +595,5 @@
     > - 杀死进程：`kill pid`
 
 * 关闭 redis：`redis-cli shutdown`
+
+[#Queue]: 
