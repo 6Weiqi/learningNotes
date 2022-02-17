@@ -1,7 +1,15 @@
 Spring 容器也叫 IoC 容器，**组件**的创建、配置、之间的依赖和生命周期管理交由容器负责，开发者只需关心组件的使用。
 
+*Bean* 相当于一个组件，其作用是实现某个特定的功能。
+
+Ioc 是一种设计思想，为的是设计出低耦合的程序。[有了 IoC 容器后，**创建和查找依赖对象的控制权交给了容器，由容器进行注入组合对象，所以对象与对象之间是 松散耦合，这样也方便测试，利于功能复用，更重要的是使得程序的整个体系结构变得非常灵活**](https://pdai.tech/md/spring/spring-x-framework-ioc.html#ioc%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88)。
+
 Spring 容器可以看作是 `ApplicationContext` 接口实例，有不同的实现类，会一次性创建所有的 Bean，`BeanFactory` 作为它的父接口，是按需创建 Bean。
 
-AOP 的原理是动态代理，通过代理类将切面织入（Weaving）到业务类中
+AOP 的原理是[动态代理](readme.md#动态代理)，通过代理类将切面织入（Weaving）到业务类中；具体来说，对接口类型使用 JDK 动态代理，对普通类使用 CGLIB 创建子类；使用注解来对方法、类装配切面，可以防止切面被装配到不必要的地方；**访问注入的 Bean 时，总是调用方法而非访问字段，因为注入 Bean 的实际类型是代理类，CGLIB 创建的代理类不会初始化继承的成员变量，只会代理非 `final` 修饰的方法**
 
-Spring Boot 是一个基于 Spring 的套件，它帮我们预组装了 Spring 的一系列组件，以便以尽可能少的代码和配置来开发基于 Spring 的 Java 应用程序；Spring 只提供了一系列组件，不成架构体系，而 Spring Boot 提供了开箱即用的应用程序架构，基于 Spring Boot 的预置结构继续开发，省时省力。
+`@Configuration` （类上）加 `@Bean` （方法上）是为了创建第三方的 Bean，用到时可以和普通 Bean 一样注入。
+
+# Spring Boot
+
+> Spring Boot 是一个基于 Spring 的套件，它帮我们预组装了 Spring 的一系列组件，以便以尽可能少的代码和配置来开发基于 Spring 的 Java 应用程序；Spring 只提供了一系列组件，不成架构体系，而 Spring Boot 提供了开箱即用的应用程序架构，基于 Spring Boot 的预置结构继续开发，省时省力。
