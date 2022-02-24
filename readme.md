@@ -427,7 +427,7 @@ for (Map.Entry<String, Integer> entry : map.entrySet()) {
 Java 内存模型；并发要满足三个要素：可见性、原子性、有序性。
 
 * 可见性：一个线程对共享变量的修改，另一个线程能立刻看到。
-* 原子性：一个或多个操作要么全部执行过程不会被打断，要么全不执行。
+* 原子性：一个或多个操作要么全部执行，过程不会被打断；要么全不执行。
 * 有序性：执行顺序按代码的先后顺序，但为了提高性能，编译器、处理器会对指令做重排序，JMM 有相应的规则针对这两种重排序
 
 > Java 内存模型只保证了基本读取和赋值是原子性操作，如果要实现更大范围操作的原子性，可以通过 synchronized 和 Lock 来实现。由于 synchronized 和 Lock 能够保证任一时刻只有一个线程执行该代码块，从而保证了原子性。
@@ -435,6 +435,121 @@ Java 内存模型；并发要满足三个要素：可见性、原子性、有序
 > Java 提供了 volatile 关键字来保证可见性。当一个共享变量被 volatile 修饰时，它会保证修改的值会立即被更新到主存，当有其他线程需要读取时，它会去内存中读取新值。通过 synchronized 和 Lock 也能够保证可见性，synchronized 和 Lock 能保证同一时刻只有一个线程获取锁然后执行同步代码，并且在释放锁之前会将对变量的修改刷新到主存当中，因此可以保证可见性。
 >
 > Java 可以通过 volatile 关键字来保证一定的有序性。另外可以通过 synchronized 和 Lock 来保证有序性，很显然，synchronized 和 Lock 保证每个时刻是有一个线程执行同步代码，相当于是让线程顺序执行同步代码，自然就保证了有序性
+
+### synchronized 关键字
+
+**同一个锁对象**的代码块在任意时刻最多只有一个线程能执行
+
+如果一个类被设计为允许多线程正确访问，我们就说这个类就是 “线程安全” 的（thread-safe）
+
+没有特殊说明时，一个类默认是非线程安全的
+
+JVM 允许同一个线程重复获取同一个锁，这种能被同一个线程反复获取的锁，就叫做**可重入锁**
+
+同一个线程可以获取一个锁后，再获取另一个锁；多个线程获取多个不同对象的锁可能导致死锁
+
+* ```java
+  synchronized(lockObject) { // 获取锁
+    
+  } // 释放锁
+  ```
+
+* ```java
+  synchronized void foo(){ // synchronized 修饰方法，相当与 this 为锁对象
+    
+  }
+  ```
+
+* ```java
+  synchronized static void foo(){ // synchronized 修饰静态方法，用当前类的 Class 实例作为锁
+    
+  }
+  ```
+
+#### 不需要 synchronized 的原子操作
+
+- 基本类型（`long` 和 `double` 除外）赋值，例如：`int n = m`
+- 引用类型赋值，例如：`List<String> list = anotherList`
+
+### 多线程协调运行
+
+当条件不满足时，线程进入等待状态；当条件满足时，线程被唤醒，继续执行任务
+
+在 `synchronized` 块中执行 `lockObj.wait()` 后，线程进入等待状态，方法不会返回，并释放锁；直到从等待状态被其他线程唤醒后，才会返回，并重新试图获取锁，获取成功后才能继续执行。
+
+在**相同的锁对象**上调用 `notify()` 或 `nofityAll()` 方法，能让等待的线程被重新唤醒；前者只会随机唤醒一个等待的线程，后者会唤醒所有在当前锁等待的线程。
+
+### ReentrantLock（可重入锁）
+
+类。效果相当于 [`synchronized`](#synchronized 关键字) 加锁，性能更好，增加了获取锁超时机制
+
+`java.util.concurrent` 包下的 `Lock` 接口和 `ReentrantLock` 类
+
+### Condition
+
+接口。相当于实现 `synchronized` 下， `wait()` 和 `notifyAll()` 的功能
+
+`Condition` 对象必须从 `Lock` 实例的 `newCondition()` 返回，这样才能获得一个绑定了 `Lock` 实例的 `Condition` 实例
+
+### ReadWriteLock
+
+接口。实现类是 `ReentrantReadWriteLock` 。
+
+允许多个线程同时读（提高性能）；一个线程写；适合读多写少的场景
+
+* `ReadWriteLock#readLock()` 读锁
+
+> 悲观读锁，一个线程读的过程中其他线程不能写入，必须等待
+
+* `ReadWriteLock#writeLock()` 写锁
+
+### StampedLock
+
+类。比 [`ReadWriteLock`](#ReadWriteLock) 提高了并发效率：读的过程中允许写入，因此提供了乐观读锁，虽然可能会导致读到的数据不一致，需要判断读的过程是否有写入。是不可重入锁
+
+### 线程池
+
+`ExecutorService` 接口表示线程池，常用的实现类通过 `Executors.newXxx()`
+
+#### Future
+
+代表一个未来能获取结果的对象
+
+```java
+Future<String> future = executorService.submit(task);
+String result = future.get(); // 同步调用，直到任务完成才返回结果
+```
+
+### ThreadLocal
+
+在线程中传递状态
+
+```java
+class ...{
+  // ThreadLocal 实例通常总是以静态字段初始化
+  static ThreadLocal<User> threadLocalUser = new ThreadLocal<>();
+  
+  void init(User user) {
+    try {
+      threadLocalUser.set(user);
+    	...
+    } finally {
+      // 当前线程执行完相关代码后，很可能会被重新放入线程池中，如果 ThreadLocal 没有被清除，该线程执行其他代码时，会把上一次的状态带进去
+      threadLocalUser.remove();
+    }
+  	...
+  }
+  
+  void a() {
+    User user = threadLocalUser.get();
+    ...
+  }
+}
+```
+
+
+
+
 
 ## IO
 
