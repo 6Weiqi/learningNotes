@@ -203,6 +203,9 @@
 ## 包装类型的缓存池
 
 * 包装类型的 `valueOf` 方法会使用指定范围内缓存池的值
+
+`new Xxx()` 每次都会新建一个对象
+
 |    类型     |      缓存数值范围      |
   | :---------: | :--------------------: |
   |  `Boolean`  |   ```true、false```    |
@@ -222,6 +225,10 @@ s1 += 1;
 ```
 
 ## [重写、重载](https://pdai.tech/md/java/basic/java-basic-lan-basic.html#%E9%87%8D%E5%86%99%E4%B8%8E%E9%87%8D%E8%BD%BD)
+
+### 重载
+
+方法名相同，参数列表不同；否则不是重载
 
 ## `hashCode` 方法
 
@@ -266,7 +273,7 @@ JVM 用到的一个环境变量，告诉 JVM 如何搜索 class 文件；classpa
 
 * 异常的屏蔽
 
-  在 `finally` 语句和  `catch` 语句都会抛出异常的情况下，异常信息只有 `finally` 语句中的，`catch` 语句中的异常称为被屏蔽的异常；要获取所有的异常信息，需要调用 `Throwable.addSuppressed()` ，添加被屏蔽的异常，然后在 `finally` 中抛出
+  在 `finally` 语句和  `catch` 语句都会抛出异常的情况下，异常信息只在 `finally` 语句中抛出，`catch` 语句中的异常称为被屏蔽的异常；要获取所有的异常信息，需要调用 `Throwable#addSuppressed()` ，添加被屏蔽的异常，然后在 `finally` 中抛出
 
 ### [断言关键字](https://www.liaoxuefeng.com/wiki/1252599548343744/1264740093521088)
 
@@ -565,6 +572,22 @@ class ...{
 
 # [Spring](Spring.md)
 
+# Docker
+
+## 一些概念
+
+* image 文件
+
+镜像文件，存储应用及其依赖
+
+* 容器文件
+
+也叫 Docker 容器。根据 image 生成，也是文件；同一个 image，可以生成多个容器
+
+* Dockerfile
+
+用来配置 image。Docker 根据该文件生成二进制的 image 文件
+
 # 前端知识点
 
 * jQuery
@@ -710,5 +733,3 @@ class ...{
     > - 杀死进程：`kill pid`
 
 * 关闭 redis：`redis-cli shutdown`
-
-[#Queue]: 
