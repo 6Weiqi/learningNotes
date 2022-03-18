@@ -7,7 +7,7 @@
 - 总的来说，事件的分发（`dispatchTouchEvent`）顺序是从 `Activity`/父 `View` 到子 `View`，而事件的处理（`onTouchEvent`）顺序则是从子 `View` 传回 `Activity`/父 `View`
 
 - 拦截、处理方法返回的 `boolean` 表示事件是否被消费
-	- 一旦拦截，事件便不在分发给它的子 `View`，事件处理直接从它开始
+	- 一旦拦截，事件便不再分发给它的子 `View`，事件处理直接从它开始
 	- 一个 `View` 一旦处理了事件，便不再交给父 `View` 处理，如果 `Activity` 仍未处理事件，事件才会被抛弃
     
     >  `ViewGroup` 比 `View` 多了一个拦截（`onInterceptTouchEvent`）方法，先分发再拦截
@@ -192,6 +192,50 @@
   - 查询某个表所涉及的存储过程：`select * from user_source s WHERE s.text LIKE '%TABLE_NAME%'`
 - [更新、插入时卡死解决方法](https://blog.csdn.net/itmyhome1990/article/details/81745990)
 
+# 加密算法
+
+## 对称加密
+
+用*同一个密钥*进行加密和解密
+
+[优点是速度较快，适合对数据量比较大的数据进行加密。缺点是密钥的保存方式需要保证，一旦加密或者解密的哪一方泄漏了密钥，都会导致信息的泄漏](http://zhangzr.cn/2018/07/04/%E5%B8%B8%E7%94%A8%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/)
+
+### DES
+
+以 64 位为分组对数据进行加密，密钥长度为 56 位
+
+### 3DES
+
+基于 DES 加密，对一块数据使用三个不同的密钥进行加密三次，强度更高
+
+### AES
+
+新一代加密算法标准，取代 [DES](#DES)，速度快，安全级别高。密钥长度最少支持 128、192、256，分组长度 128 位
+
+## 非对称加密
+
+使用公钥和私钥进行加解密
+
+### RSA
+
+是目前最有影响力的公钥加密算法，并且被普遍认为是最优秀的公钥方案之一，能够抵抗到目前为止已知的所有密码攻击
+
+### ECC
+
+相对于 RSA，ECC 的抗攻击性更强，并且计算量小，处理速度快，存储空间占用小，所以适用于移动设备使用
+
+## Hash 加密
+
+不可逆，通过 Hash 算法对目标信息生成一段特定长度的唯一的 Hash 值，用于校验数据完整性
+
+### MD5
+
+严格来说，MD5 不是一种**加密算法**，而是**摘要算法**
+
+### SHA1
+
+比 MD5 安全性更高
+
 # Java 知识点
 
 ## switch 语法
@@ -267,7 +311,7 @@ JVM 用到的一个环境变量，告诉 JVM 如何搜索 class 文件；classpa
 
 `Exception` 为应该捕获并处理的异常，分为可检查（checked）异常和不检查（unchecked）异常。
 
-可检查异常在源代码里必须显式地进行捕获处理，这是编译期检查的一部分；
+可检查异常在源代码里必须显式地进行捕获处理，比如 `IOException`、`FileNotFoundException`。 这是编译期检查的一部分；
 
 不检查异常就是所谓的运行时异常（`RuntimeException`），类似 `NullPointerException`、`ArrayIndexOutOfBoundsException` 之类，通常是可以编码避免的逻辑错误，具体根据需要来判断是否需要捕获，并不会在编译期强制要求
 
@@ -386,9 +430,9 @@ for (Map.Entry<String, Integer> entry : map.entrySet()) {
 
 **无序**；底层通过大数组存储所有 value，根据 key 的哈希值计算出下标，空间换时间，数组容量不足时会自动扩容；不同 key 的哈希值相同时，通过链表进行存储，[在 Java8 中，当链表中的元素达到了 8 个时，会将链表转换为红黑树，在这些位置进行查找的时候可以降低时间复杂度为 O (logN)](https://pdai.tech/md/java/collection/java-map-HashMap&HashSet.html#java8-hashmap)
 
-####TreeMap
+#### TreeMap
 
-在内部会对 key 按放入的顺序进行排序，`SortedMap` 接口的实现类，key 需要实现 `Comparable` 接口
+在内部会对 key 按 `Comparable#compareTo()` 进行排序，`SortedMap` 接口的实现类，key 需要实现 `Comparable` 接口
 
 ### Set
 
@@ -400,7 +444,7 @@ for (Map.Entry<String, Integer> entry : map.entrySet()) {
 
 #### TreeSet
 
-有序（按放入的顺序进行排序），`SortedSet` 接口的实现类，元素必须实现 `Comparable` 接口
+有序（按 `Comparable#compareTo()` 进行排序），`SortedSet` 接口的实现类，元素必须实现 `Comparable` 接口
 
 ### Queue<E>
 
@@ -442,6 +486,10 @@ Java 内存模型；并发要满足三个要素：可见性、原子性、有序
 > Java 提供了 volatile 关键字来保证可见性。当一个共享变量被 volatile 修饰时，它会保证修改的值会立即被更新到主存，当有其他线程需要读取时，它会去内存中读取新值。通过 synchronized 和 Lock 也能够保证可见性，synchronized 和 Lock 能保证同一时刻只有一个线程获取锁然后执行同步代码，并且在释放锁之前会将对变量的修改刷新到主存当中，因此可以保证可见性。
 >
 > Java 可以通过 volatile 关键字来保证一定的有序性。另外可以通过 synchronized 和 Lock 来保证有序性，很显然，synchronized 和 Lock 保证每个时刻是有一个线程执行同步代码，相当于是让线程顺序执行同步代码，自然就保证了有序性
+
+## JUC
+
+Java 并发包。即 `java.util.concurrent` 包
 
 ### synchronized 关键字
 
@@ -492,11 +540,55 @@ JVM 允许同一个线程重复获取同一个锁，这种能被同一个线程�
 
 `java.util.concurrent` 包下的 `Lock` 接口和 `ReentrantLock` 类
 
+```java
+private final Lock lock = new ReentrantLock();
+
+public void foo(){
+  if(lock.tryLock(1, TimeUnit.SECONDS)){
+    try{
+      ...
+    }finally{
+      lock.unlock();
+    }
+  }else{
+    // 1 秒后未获取到锁的处理
+    ...
+  }
+}
+```
+
+
+
 ### Condition
 
 接口。相当于实现 `synchronized` 下， `wait()` 和 `notifyAll()` 的功能
 
 `Condition` 对象必须从 `Lock` 实例的 `newCondition()` 返回，这样才能获得一个绑定了 `Lock` 实例的 `Condition` 实例
+
+```java
+private final Lock lock = new ReentrantLock();
+
+private final Condition condition = lock.newCondition();
+
+public void foo(){
+  lock.lock();
+  try{
+    ...
+    // 相当于 wait 方法
+    condition.await();
+  }finally{
+    lock.unlock();
+  }
+}
+
+public void bar(){
+  ...
+  // 相当于 notifyAll 方法
+  condition.signalAll();
+}
+```
+
+
 
 ### ReadWriteLock
 
@@ -509,6 +601,34 @@ JVM 允许同一个线程重复获取同一个锁，这种能被同一个线程�
 > 悲观读锁，一个线程读的过程中其他线程不能写入，必须等待
 
 * `ReadWriteLock#writeLock()` 写锁
+
+```java
+private final ReadWriteLock rwlock = new ReentrantReadWriteLock(); 
+private final Lock rlock = rwlock.readLock(); 
+private final Lock wlock = rwlock.writeLock();
+
+public void foo(){
+  // 防止读的过程中其他线程写，但可以读
+  rlock.lock();
+  try{
+    // 读操作
+  }finally{
+    rlock.unlock();
+  }
+}
+
+public void bar(){
+  // 防止写的过程中其他线程读
+  wlock.lock();
+  try{
+    // 写操作
+  }finally{
+    wlock.unlock();
+  }
+}
+```
+
+
 
 ### StampedLock
 
@@ -578,7 +698,7 @@ class ...{
 
 * image 文件
 
-镜像文件，存储应用及其依赖
+镜像文件。存储应用及其依赖
 
 * 容器文件
 
