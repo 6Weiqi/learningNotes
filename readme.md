@@ -196,59 +196,59 @@
 
 ## 对称加密
 
-用*同一个密钥*进行加密和解密
+用*同一个密钥*进行加密和解密。
 
-[优点是速度较快，适合对数据量比较大的数据进行加密。缺点是密钥的保存方式需要保证，一旦加密或者解密的哪一方泄漏了密钥，都会导致信息的泄漏](http://zhangzr.cn/2018/07/04/%E5%B8%B8%E7%94%A8%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/)
+[优点是速度较快，适合对数据量比较大的数据进行加密。缺点是密钥的保存方式需要保证，一旦加密或者解密的哪一方泄漏了密钥，都会导致信息的泄漏](http://zhangzr.cn/2018/07/04/%E5%B8%B8%E7%94%A8%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/)。
 
 ### DES
 
-以 64 位为分组对数据进行加密，密钥长度为 56 位
+以 64 位为分组对数据进行加密，密钥长度为 56 位。
 
 ### 3DES
 
-基于 DES 加密，对一块数据使用三个不同的密钥进行加密三次，强度更高
+基于 DES 加密，对一块数据使用三个不同的密钥进行加密三次，强度更高。
 
 ### AES
 
-新一代加密算法标准，取代 [DES](#DES)，速度快，安全级别高。密钥长度最少支持 128、192、256，分组长度 128 位
+新一代加密算法标准，取代 [DES](#DES)，速度快，安全级别高。密钥长度最少支持 128、192、256，分组长度 128 位。
 
 ## 非对称加密
 
-使用公钥和私钥进行加解密
+使用公钥和私钥进行加解密。
 
 ### RSA
 
-是目前最有影响力的公钥加密算法，并且被普遍认为是最优秀的公钥方案之一，能够抵抗到目前为止已知的所有密码攻击
+是目前最有影响力的公钥加密算法，并且被普遍认为是最优秀的公钥方案之一，能够抵抗到目前为止已知的所有密码攻击。
 
 ### ECC
 
-相对于 RSA，ECC 的抗攻击性更强，并且计算量小，处理速度快，存储空间占用小，所以适用于移动设备使用
+相对于 RSA，ECC 的抗攻击性更强，并且计算量小，处理速度快，存储空间占用小，所以适用于移动设备使用。
 
 ## Hash 加密
 
-不可逆，通过 Hash 算法对目标信息生成一段特定长度的唯一的 Hash 值，用于校验数据完整性
+不可逆，通过 Hash 算法对目标信息生成一段特定长度的唯一的 Hash 值，用于校验数据完整性。
 
 ### MD5
 
-严格来说，MD5 不是一种**加密算法**，而是**摘要算法**
+严格来说，MD5 不是一种**加密算法**，而是**摘要算法**。
 
 ### SHA1
 
-比 MD5 安全性更高
+比 MD5 安全性更高。
 
 # Java 知识点
 
 ## switch 语法
 
-从 jdk 1.5 开始，可以使用枚举类型；jdk 1.7 开始，可以使用 `String`；不能使用 `long`
+从 jdk 1.5 开始，可以使用枚举类型；jdk 1.7 开始，可以使用 `String`；不能使用 `long`。
 
 ***
 
 ## 包装类型的缓存池
 
-* 包装类型的 `valueOf` 方法会使用指定范围内缓存池的值
+包装类型的 `valueOf` 方法会使用指定范围内缓存池的值。
 
-`new Xxx()` 每次都会新建一个对象
+`new Xxx()` 每次都会新建一个对象。
 
 |    类型     |      缓存数值范围      |
   | :---------: | :--------------------: |
@@ -272,7 +272,7 @@ s1 += 1;
 
 ### 重载
 
-方法名相同，参数列表不同；否则不是重载
+方法名相同，参数列表不同；否则不是重载。
 
 ## `hashCode` 方法
 
@@ -280,7 +280,7 @@ s1 += 1;
 public native int hashCode();
 ```
 
-来自 `Object` 类，返回散列值；等价的两个对象散列值一定相同，但是散列值相同的两个对象不一定等价。即，重写 `equals` 方法时应当总是重写 `hashCode` 方法
+来自 `Object` 类，返回散列值；等价的两个对象散列值一定相同，但是散列值相同的两个对象不一定等价。即，重写 `equals` 方法时应当总是重写 `hashCode` 方法。
 
 ## `clone` 方法
 
@@ -291,13 +291,13 @@ protected native Object clone() throws CloneNotSupportedException;
 > 来自 `Object` 类
 
 * 浅拷贝
-  拷贝对象和原始对象引用自同一个对象
+  拷贝对象和原始对象引用自同一个对象。
 * 深拷贝
-  拷贝对象和原始对象引用自不同对象
+  拷贝对象和原始对象引用自不同对象。
 
 ## classpath
 
-JVM 用到的一个环境变量，告诉 JVM 如何搜索 class 文件；classpath 是**一组**目录的集合，目录格式和操作系统有关；推荐在 JVM 启动时设置 classpath
+JVM 用到的一个环境变量，告诉 JVM 如何搜索 class 文件；classpath 是**一组**目录的集合，目录格式和操作系统有关；推荐在 JVM 启动时设置 classpath。
 
 ## 异常
 
@@ -313,11 +313,11 @@ JVM 用到的一个环境变量，告诉 JVM 如何搜索 class 文件；classpa
 
 可检查异常在源代码里必须显式地进行捕获处理，比如 `IOException`、`FileNotFoundException`。 这是编译期检查的一部分；
 
-不检查异常就是所谓的运行时异常（`RuntimeException`），类似 `NullPointerException`、`ArrayIndexOutOfBoundsException` 之类，通常是可以编码避免的逻辑错误，具体根据需要来判断是否需要捕获，并不会在编译期强制要求
+不检查异常就是所谓的运行时异常（`RuntimeException`），类似 `NullPointerException`、`ArrayIndexOutOfBoundsException` 之类，通常是可以编码避免的逻辑错误，具体根据需要来判断是否需要捕获，并不会在编译期强制要求。
 
 * 异常的屏蔽
 
-  在 `finally` 语句和  `catch` 语句都会抛出异常的情况下，异常信息只在 `finally` 语句中抛出，`catch` 语句中的异常称为被屏蔽的异常；要获取所有的异常信息，需要调用 `Throwable#addSuppressed()` ，添加被屏蔽的异常，然后在 `finally` 中抛出
+  在 `finally` 语句和  `catch` 语句都会抛出异常的情况下，异常信息只在 `finally` 语句中抛出，`catch` 语句中的异常称为被屏蔽的异常；要获取所有的异常信息，需要调用 `Throwable#addSuppressed` ，添加被屏蔽的异常，然后在 `finally` 中抛出。
 
 ### [断言关键字](https://www.liaoxuefeng.com/wiki/1252599548343744/1264740093521088)
 
@@ -341,7 +341,7 @@ assert x >= 0 : "x must >= 0";
 
 Java 断言的特点是：断言失败时会抛出 `AssertionError`，导致程序结束退出。因此，断言不能用于可恢复的程序错误，只应该用于开发和测试阶段。
 
- JVM 默认关闭断言指令，即遇到 `assert` 语句就自动忽略了，不执行
+ JVM 默认关闭断言指令，即遇到 `assert` 语句就自动忽略了，不执行。
 
 ## 泛型
 
@@ -356,7 +356,38 @@ Java 断言的特点是：断言失败时会抛出 `AssertionError`，导致程�
 
 ## 注解
 
-通过 `@interface` 关键字来定义注解
+### 作用
+
+* 生成文档，通过代码里标识的元数据生成 javadoc 文档
+* 编译检查，通过代码里标识的元数据让编译器在编译期间进行检查验证，例如 `@Override`、`@SuppressWarnings`
+* 编译时动态处理，例如动态生成代码，修改 `.class` 文件
+* 运行时动态处理，例如使用反射注入实例
+
+通过 `@interface` 关键字来定义注解，注解的本质是接口（通过反编译注解的 `.class` 文件），所以注解中可以定义常量和抽象方法，不能使用 `extends`。
+
+方法不能有参数，返回值**不包括**  `String`、`Class` 以外的对象类型及其数组类型。
+
+抽象方法也叫注解的属性，在方法体后添加 `default` 指定属性的默认值；如果只有一个属性需要赋值，且属性名为 `value`，那么赋值时可以省略属性。
+
+### 元注解
+
+修饰注解的注解。
+
+#### @Target
+
+表示被修饰的自定义注解能够作用在代码中的位置，比如类、方法、属性上。
+
+#### @Retention
+
+表示被修饰的自定义注解能够保留到的阶段，比如编译期 `RetentionPolicy.SOURCE`、字节码阶段 `RetentionPolicy.CLASS`、运行期（JVM 能够读取）`RetentionPolicy.RUNTIME`，自定义注解通常都用 `RetentionPolicy.RUNTIME`。
+
+#### @Inherited
+
+表示被修饰的自定义注解可以被使用了该自定义注解的**类**的子类继承，对使用自定义注解修饰的接口的继承无效。
+
+#### @Documented
+
+表示在代码中被 `@Documented` 修饰的自定义注解会保留在 javadoc 文档中。
 
 ## 反射
 
@@ -373,45 +404,82 @@ Number.class.isAssignableFrom(Integer.class); // true，因为 Integer 可以赋
 
 > [对于接口而言；不编写实现类，在运行期动态创建接口对象；原理是 JVM 在运行期通过反射创建实现类（字节码）并加载](https://www.liaoxuefeng.com/wiki/1252599548343744/1264804593397984)
 
+通过 `Proxy.newProxyInstance` 创建接口实现类，核心在于代理类中的 `InvocationHandler#invoke` 方法通过反射来代理方法。
+
 ## SPI 机制
 
 > SPI（Service Provider Interface），是 JDK 内置的一种服务发现机制，为接口寻找服务实现。调用方提供接口，服务提供方实现接口，将接口与实现分离，达到解耦的目的。
 >
 > API 中的接口和实现都在一起
 
-服务提供方需要在 classpath 下的 `META-INF/services/` 目录里创建一个以服务接口全路径命名的文件，这个文件里的内容就是这个接口的具体的实现类路径，调用方通过服务发现，加载实现类，就可以使用该服务了。JDK 中查找服务的实现的工具类是：`java.util.ServiceLoader`
+服务提供方需要在 classpath 下的 `META-INF/services/` 目录里创建一个以服务接口全路径命名的文件，这个文件里的内容就是这个接口的具体的实现类路径，调用方通过服务发现，加载实现类，就可以使用该服务了。JDK 中查找服务的实现的工具类是：`java.util.ServiceLoader`。
 
 ### 应用
 
 #### JDBC DriverManager
 
-JDBC 定义了数据库驱动的接口（标准），数据库厂商提供驱动的实现
+JDBC 定义了数据库驱动的接口（标准），数据库厂商提供驱动的实现。
 
 #### Commons Logging
 
-Commons Logging 提供了一套接口，根据情况使用不同的日志实现，自动搜索并使用 Log4j，如果没有找到 Log4j，再使用 JDK 自带的 Logging
+Commons Logging 提供了一套接口，根据情况使用不同的日志实现，自动搜索并使用 Log4j，如果没有找到 Log4j，再使用 JDK 自带的 Logging。
 
 #### SLF4J
 
-SLF4J 类似于 Commons Logging，也是一个日志接口，而 Logback 类似于 Log4j，是一个日志的实现
+SLF4J 类似于 Commons Logging，也是一个日志接口，而 Logback 类似于 Log4j，是一个日志的实现。
 
 ## 集合
 
-分类两大类，`Collection<E>` 接口和 `Map<K, V>` 接口
+分类两大类，`Collection<E>` 接口和 `Map<K, V>` 接口。
 
-### List<E>
+### List
 
 `Collection` 的子接口；有序，遍历 `List` 尽量使用 `Iterator<E>` 接口来访问，因为不同的 `List` 实现类返回的 `Iterator<E>` 对象实现也不同，但总有最高的访问效率；用 `for each` 循环遍历 `Iterable<E>`  实现类时，会自动使用 `Iterator<E>` 遍历。
 
 #### ArrayList
 
-底层数组实现，添加元素时容量不足会自动扩容
+底层数组实现，添加元素时容量不足会自动扩容，查询效率高（通过下标访问），增删效率低。
 
 > [数组进行扩容时，会将老数组中的元素重新拷贝一份到新的数组中，每次数组容量的增长大约是其原容量的 1.5 倍。这种操作的代价是很高的，因此在实际使用时，我们应该尽量避免数组容量的扩张。当我们可预知要保存的元素的多少时，要在构造 ArrayList 实例时，就指定其容量，以避免数组扩容的发生。或者根据实际需求，通过调用 ensureCapacity 方法来手动增加 ArrayList 实例的容量。](https://pdai.tech/md/java/collection/java-collection-ArrayList.html)
 
+```java
+// add 方法扩容代码，右移一位相当于减半
+int newCapacity = oldCapacity + (oldCapacity >> 1);
+```
+
 #### LinkedList
 
-既实现了 `List` 接口，又实现了 [`Deque`](#Deque) 接口，底层为双向链表，跟下标相关的操作都是下标越大，耗时越久
+既实现了 `List` 接口，又实现了 [`Deque`](#Deque) 接口，底层为双向链表，增删效率高，查询效率低（根据元素位置从头/尾遍历访问）。
+
+```java
+// get 方法遍历获取指定位置元素核心代码
+Node<E> node(int index) {
+  if (index < (size >> 1)) {
+    // 元素在前半部分，正序遍历
+    Node<E> x = first;
+    for (int i = 0; i < index; i++)
+      x = x.next;
+    return x;
+  } else {
+    // 元素在后半部分，倒序遍历
+    Node<E> x = last;
+    for (int i = size - 1; i > index; i--)
+      x = x.prev;
+    return x;
+  }
+}
+```
+
+#### Vector
+
+与 [ArrayList](#ArrayList) 类似，底层都是动态数组，区别在于 `Vector` 是线程安全的，因为每个方法都有 [synchronized 关键字](#synchronized 关键字)，对性能影响较大，所以不常用。
+
+需要线程安全的 `List` 时，可以使用工具类 `java.util.Collections`：
+
+```java
+List list = ...;
+list = Collections.synchronizedList(list);
+```
 
 ### Map<K, V>
 
@@ -428,27 +496,33 @@ for (Map.Entry<String, Integer> entry : map.entrySet()) {
 
 #### HashMap
 
-**无序**；底层通过大数组存储所有 value，根据 key 的哈希值计算出下标，空间换时间，数组容量不足时会自动扩容；不同 key 的哈希值相同时，通过链表进行存储，[在 Java8 中，当链表中的元素达到了 8 个时，会将链表转换为红黑树，在这些位置进行查找的时候可以降低时间复杂度为 O (logN)](https://pdai.tech/md/java/collection/java-map-HashMap&HashSet.html#java8-hashmap)
+**无序**；底层通过大数组存储所有 value，根据 key 的[哈希值](#hashCode 方法)计算出下标，空间换时间，数组容量不足时会自动扩容；不同 key 的哈希值相同时，通过链表进行存储，[在 Java8 中，当链表中的元素达到了 8 个时，会将链表转换为红黑树，在这些位置进行查找的时候可以降低时间复杂度为 O (logN)](https://pdai.tech/md/java/collection/java-map-HashMap&HashSet.html#java8-hashmap)。
+
+Java7 及以前是通过动态数组 + 单向链表实现。
+
+Java8 之后是通过动态数组 + 单向链表 / 红黑树实现。
 
 #### TreeMap
 
-在内部会对 key 按 `Comparable#compareTo()` 进行排序，`SortedMap` 接口的实现类，key 需要实现 `Comparable` 接口
+底层红黑树实现。
+
+有序，在内部会对 key 按 `Comparable#compareTo` 进行排序，`SortedMap` 接口的实现类，key 需要实现 `Comparable` 接口。
 
 ### Set
 
-接口，存储不重复的元素集合，相当于只存储 key，不存储 value 的 `Map`
+接口，存储不重复的元素集合，相当于只存储 key，不存储 value 的 `Map`。
 
 #### HashSet
 
-`HashMap` 的包装，无序
+[`HashMap`](#HashMap) 的包装，无序。
 
 #### TreeSet
 
-有序（按 `Comparable#compareTo()` 进行排序），`SortedSet` 接口的实现类，元素必须实现 `Comparable` 接口
+[`TreeMap`](#TreeMap) 的包装，有序（按 `Comparable#compareTo` 进行排序），`SortedSet` 接口的实现类，元素必须实现 `Comparable` 接口。
 
-### Queue<E>
+### Queue
 
-先进先出，队首出队，队尾入队
+先进先出，队首出队，队尾入队。
 
 | 队列操作           | throw Exception | 返回 false 或 null |
 | :----------------- | :-------------- | ------------------ |
@@ -458,11 +532,11 @@ for (Map.Entry<String, Integer> entry : map.entrySet()) {
 
 #### PriorityQueue
 
-优先级最高的，先出队，优先级高低根据 `Comparable` 或 `Comparator<E>` 接口决定
+优先级最高的，先出队，优先级高低根据 `Comparable` 或 `Comparator<E>` 接口决定。
 
 #### Deque
 
-接口，对首、对尾都能出队、入队，双端队列（Double Ended Queue）
+接口，对首、对尾都能出队、入队，双端队列（Double Ended Queue）。
 
 |                    | queue                  | Deque                           |
 | :----------------- | :--------------------- | ------------------------------- |
@@ -477,31 +551,31 @@ for (Map.Entry<String, Integer> entry : map.entrySet()) {
 
 Java 内存模型；并发要满足三个要素：可见性、原子性、有序性。
 
-* 可见性：一个线程对共享变量的修改，另一个线程能立刻看到。
-* 原子性：一个或多个操作要么全部执行，过程不会被打断；要么全不执行。
+JMM 是软件层面抽象的模型，解决了多线程环境下的以上三类问题。
+
+* 可见性：一个线程对共享变量的修改，另一个线程能立刻看到
+* 原子性：一个或多个操作要么全部执行，过程不会被打断；要么全不执行
 * 有序性：执行顺序按代码的先后顺序，但为了提高性能，编译器、处理器会对指令做重排序，JMM 有相应的规则针对这两种重排序
 
 > Java 内存模型只保证了基本读取和赋值是原子性操作，如果要实现更大范围操作的原子性，可以通过 synchronized 和 Lock 来实现。由于 synchronized 和 Lock 能够保证任一时刻只有一个线程执行该代码块，从而保证了原子性。
 >
 > Java 提供了 volatile 关键字来保证可见性。当一个共享变量被 volatile 修饰时，它会保证修改的值会立即被更新到主存，当有其他线程需要读取时，它会去内存中读取新值。通过 synchronized 和 Lock 也能够保证可见性，synchronized 和 Lock 能保证同一时刻只有一个线程获取锁然后执行同步代码，并且在释放锁之前会将对变量的修改刷新到主存当中，因此可以保证可见性。
 >
-> Java 可以通过 volatile 关键字来保证一定的有序性。另外可以通过 synchronized 和 Lock 来保证有序性，很显然，synchronized 和 Lock 保证每个时刻是有一个线程执行同步代码，相当于是让线程顺序执行同步代码，自然就保证了有序性
+> Java 可以通过 volatile 关键字来保证一定的有序性。另外可以通过 synchronized 和 Lock 来保证有序性，很显然，synchronized 和 Lock 保证每个时刻是有一个线程执行同步代码，相当于是让线程顺序执行同步代码，自然就保证了有序性。
 
 ## JUC
 
-Java 并发包。即 `java.util.concurrent` 包
+Java 并发包。即 `java.util.concurrent` 包。
 
 ### synchronized 关键字
 
-**同一个锁对象**的代码块在任意时刻最多只有一个线程能执行
+**同一个锁对象**的代码块在任意时刻最多只有一个线程能执行。
 
-如果一个类被设计为允许多线程正确访问，我们就说这个类就是 “线程安全” 的（thread-safe）
+如果一个类被设计为允许多线程正确访问，我们就说这个类就是 “线程安全” 的（thread-safe）。
 
-没有特殊说明时，一个类默认是非线程安全的
+没有特殊说明时，一个类默认是非线程安全的。
 
-JVM 允许同一个线程重复获取同一个锁，这种能被同一个线程反复获取的锁，就叫做**可重入锁**
-
-同一个线程可以获取一个锁后，再获取另一个锁；多个线程获取多个不同对象的锁可能导致死锁
+JVM 允许同一个线程重复获取同一个锁，这种能被同一个线程反复获取的锁，就叫做**可重入锁**。
 
 * ```java
   synchronized(lockObject) { // 获取锁
@@ -521,24 +595,62 @@ JVM 允许同一个线程重复获取同一个锁，这种能被同一个线程�
   }
   ```
 
+#### 死锁
+
+同一个线程可以获取一个锁后，再获取另一个锁。
+
+多个线程获取多个不同对象的锁可能导致死锁。
+
+##### 发生死锁如何解决
+
+只能重启应用。
+
+##### 如何避免
+
+不同方法中获取锁对象的顺序要一致。
+
 #### 不需要 synchronized 的原子操作
 
 - 基本类型（`long` 和 `double` 除外）赋值，例如：`int n = m`
 - 引用类型赋值，例如：`List<String> list = anotherList`
 
+###线程的状态
+
+- New：新建，线程未执行
+
+- Runnable：运行中
+
+- Blocked：阻塞，等待其他线程释放锁时
+
+- Waiting：等待，调用 `lockObj#wait`、`Thread.join` 无超时时间时
+
+- Timed Waiting：计时等待，调用 `Thread#sleep` 或 `lockObj#wait`、`Thread#join` 带上超时时间时
+
+- Terminated：终止，`Thread#run` 执行完毕
+
 ### 多线程协调运行
 
-当条件不满足时，线程进入等待状态；当条件满足时，线程被唤醒，继续执行任务
+当条件不满足时，线程进入等待状态；当条件满足时，线程被唤醒，继续执行任务。
 
-在 `synchronized` 块中执行 `lockObj.wait()` 后，线程进入等待状态，方法不会返回，并释放锁；直到从等待状态被其他线程唤醒后，才会返回，并重新试图获取锁，获取成功后才能继续执行。
+在 `synchronized` 块中执行 `lockObj.wait()` 后，线程进入[等待状态](#线程的状态)，方法不会返回，并释放锁；直到从等待状态被其他线程唤醒后，并重新试图获取锁，获取成功后才会返回继续执行。
 
 在**相同的锁对象**上调用 `notify()` 或 `nofityAll()` 方法，能让等待的线程被重新唤醒；前者只会随机唤醒一个等待的线程，后者会唤醒所有在当前锁等待的线程。
 
+### 如何终止线程
+
+* `Thread#interrupt` 配合 `Thread#isInterrupted`
+
+线程外通过 `Thread#interrupt` 发起中断请求，线程内的 `Thread#isInterrupted` 为 `true`。
+
+发起中断请求后，线程内的等待操作（`Thread#sleep`、`Thread#join`、`lockObj#wait`）会抛出 `InterruptedException`。
+
+* `volatile` 的共享变量
+
 ### ReentrantLock（可重入锁）
 
-类。效果相当于 [`synchronized`](#synchronized 关键字) 加锁，性能更好，增加了获取锁超时机制
+`java.util.concurrent` 下的 `Lock` 接口实现类。
 
-`java.util.concurrent` 包下的 `Lock` 接口和 `ReentrantLock` 类
+效果相当于 [synchronized](#synchronized 关键字) 加锁，性能更好，增加了获取锁超时机制。
 
 ```java
 private final Lock lock = new ReentrantLock();
@@ -561,9 +673,9 @@ public void foo(){
 
 ### Condition
 
-接口。相当于实现 `synchronized` 下， `wait()` 和 `notifyAll()` 的功能
+接口。相当于实现 `synchronized` 下， `wait()` 和 `notifyAll()` 的功能。
 
-`Condition` 对象必须从 `Lock` 实例的 `newCondition()` 返回，这样才能获得一个绑定了 `Lock` 实例的 `Condition` 实例
+`Condition` 对象必须从 `Lock` 实例的 `newCondition()` 返回，这样才能获得一个绑定了 `Lock` 实例的 `Condition` 实例。
 
 ```java
 private final Lock lock = new ReentrantLock();
@@ -594,7 +706,7 @@ public void bar(){
 
 接口。实现类是 `ReentrantReadWriteLock` 。
 
-允许多个线程同时读（提高性能）；一个线程写；适合读多写少的场景
+允许多个线程同时读（提高性能）；一个线程写；适合读多写少的场景。
 
 * `ReadWriteLock#readLock()` 读锁
 
@@ -632,11 +744,11 @@ public void bar(){
 
 ### StampedLock
 
-类。比 [`ReadWriteLock`](#ReadWriteLock) 提高了并发效率：读的过程中允许写入，因此提供了乐观读锁，虽然可能会导致读到的数据不一致，需要判断读的过程是否有写入。是不可重入锁
+类。比 [`ReadWriteLock`](#ReadWriteLock) 提高了并发效率：读的过程中允许写入，因此提供了乐观读锁，虽然可能会导致读到的数据不一致，需要判断读的过程是否有写入。是不可重入锁。
 
 ### 线程池
 
-`ExecutorService` 接口表示线程池，常用的实现类通过 `Executors.newXxx()`
+`ExecutorService` 接口表示线程池，常用的实现类通过 `Executors.newXxx()` 实例化。
 
 #### Future
 
@@ -649,7 +761,7 @@ String result = future.get(); // 同步调用，直到任务完成才返回结�
 
 ### ThreadLocal
 
-在线程中传递状态
+在线程中传递状态。
 
 ```java
 class ...{
@@ -676,8 +788,6 @@ class ...{
 
 
 
-
-
 ## IO
 
 > 以内存为中心。
@@ -687,8 +797,51 @@ class ...{
 > Output：从内存把数据**写**到外部
 
 * 字节流：InputStream/OutputStream，以 `byte` 为最小单位
-
 * 字符流：Reader/Writer，以 `char` 为最小单位
+
+利用装饰器模式，每个流都包括两大块功能：核心功能（不同数据源的流）和附加功能（缓冲、压缩、解密流），两部分可以独立扩展，自由组合。
+
+### 网络 IO
+
+TCP/IP 称为 **TCP/IP 协议族**，核心的两个协议是 TCP 协议和 IP 协议。
+
+IP 协议为互联网协议，处于计算机网络分层模型的网络层，用于分组交换，只负责发数据包，不保证传输的可靠性。
+
+TCP 协议为传输控制协议，处于分层模型的应用层，传输数据包之前需要先建立连接，传输完要断开连接，允许双向通行，能保证传输的可靠性。
+
+网络编程本质就是进程间的网络通信，服务端进程监听某个指定端口，等待客户端进程连接；客户端指定服务端的 IP 地址和端口连接服务端，连接成功后，双方就建立了一个 TCP 连接，之后可以互相发送、接收数据。
+
+`Socket` 相当于对 TCP 协议连接、传输的封装，`Socket#getInputStream` 读取对方发送的数据（输入）、`Socket#getOutputStream` 发送数据给对方（输出）。
+
+服务端通过新建 `ServerSocket` 实例指定端口，`ServerSocket#accept` 获取 `Socket` 。
+
+客户端通过新建 `Socket` 实例指定 IP、端口。
+
+### IO 模型
+
+#### 同步 IO
+
+会产生阻塞操作的 IO，比如等待数据、将数据从操作系统复制到应用进程。
+
+##### 阻塞 IO
+
+应用进程调用接收数据指令，过程中，因为等待数据阻塞，获取到数据后再将其从操作系统复制到应用进程后才继续执行。
+
+##### 非阻塞 IO
+
+应用进程调用接收数据指令，操作系统返回状态码，应用进程要通过轮询获取数据状态，直到操作系统获取到数据，再复制到应用进程。轮询会增加系统开销。
+
+##### IO 复用
+
+应用进程可以处理多个 IO 事件，**等待**多个事件中的任何一个获取到数据后，将其从操作系统复制到应用进程后返回。
+
+##### 信号驱动 IO
+
+应用进程调用信号指令后直接返回，获取到数据时操作系统会通知应用进程，再将数据从操作系统复制到应用进程。
+
+#### 异步 IO
+
+应用进程调用异步指令后直接返回，数据到应用进程之后操作系统才会通知应用进程。
 
 # [Spring](Spring.md)
 
@@ -698,15 +851,168 @@ class ...{
 
 * image 文件
 
-镜像文件。存储应用及其依赖
+镜像文件。存储应用及其依赖。
 
 * 容器文件
 
-也叫 Docker 容器。根据 image 生成，也是文件；同一个 image，可以生成多个容器
+也叫 Docker 容器。根据 image 生成，也是文件；同一个 image，可以生成多个容器。
 
 * Dockerfile
 
-用来配置 image。Docker 根据该文件生成二进制的 image 文件
+用来配置 image。Docker 根据该文件生成二进制的 image 文件。
+
+# Redis
+
+键值存储数据库，通过键，存储、查找值，值包括了一系列数据结构。
+
+## 数据结构
+
+### 字符串
+
+```shell
+# 所有 redis 的单条命令都是原子操作
+# 存取值
+set test "test"
+get test => "test"
+# key 对应的值是否存在
+exists test => 1
+
+# 整数是特殊的字符串
+SET connections 10
+INCR connections => 11
+INCR connections => 12
+DEL connections
+INCR connections => 1
+INCRBY connections 100 => 101
+DECR connections => 100
+DECRBY connections 10 => 90
+
+# expire 设置过期时间（s），ttl（time to live）查看剩余存活时间（s）
+# pexpire、pttl 同上，只不过时间单位变为毫秒
+SET resource:lock "Redis Demo"
+EXPIRE resource:lock 120
+TTL resource:lock
+SET resource:lock "Redis Demo 3" EX 5
+```
+
+### list
+
+有序存储，双向链表结构
+
+```shell
+# 左右入队操作
+RPUSH friends "Alice"
+RPUSH friends "Bob"
+LPUSH friends "Sam"
+# push 操作支持入队多个元素
+RPUSH test 1 2 3 => 3
+# 0 表示第一个元素，-1 表示最后一个元素，-2 表示倒数第二个元素
+LRANGE friends 0 -1 => 1) "Sam", 2) "Alice", 3) "Bob"
+LRANGE friends 0 1 => 1) "Sam", 2) "Alice"
+LRANGE friends 1 2 => 1) "Alice", 2) "Bob"
+# pop 操作会返回弹出的元素
+LPOP friends => "Sam"
+RPOP friends => "Bob"
+# 获取 list 长度
+LLEN friends => 1
+```
+
+### set
+
+无序，元素不重复
+
+```shell
+# 添加
+SADD superpowers "flight"
+SADD superpowers "x-ray vision" "reflexes"
+# 支持一次添加多个元素
+SADD letters a b c d e f => 6
+# 移除，移除不存在的元素返回 0
+SREM superpowers "reflexes" => 1
+SREM superpowers "making pizza" => 0
+# 元素是否在 set 中
+SISMEMBER superpowers "flight" => 1
+SISMEMBER superpowers "reflexes" => 0
+# 获取 set 所有元素
+SMEMBERS superpowers => 1) "flight", 2) "x-ray vision"
+# 组合多个 set
+SADD birdpowers "pecking"
+SADD birdpowers "flight"
+SUNION superpowers birdpowers => 1) "pecking", 2) "x-ray vision", 3) "flight"
+# 添加元素失败返回 0，否则返回 1
+SADD superpowers "flight" => 0
+SADD superpowers "invisibility" => 1
+# 随机弹出两个元素，参数表示想弹出的元素个数
+SPOP letters 2 => 1) "c" 2) "a"
+```
+
+### sorted set
+
+有序，为每个元素增加了 score 权重，用于排序
+
+```shell
+# score 在前，元素在后
+ZADD hackers 1940 "Alan Kay"
+ZADD hackers 1906 "Grace Hopper"
+ZADD hackers 1953 "Richard Stallman"
+ZADD hackers 1965 "Yukihiro Matsumoto"
+ZADD hackers 1916 "Claude Shannon"
+ZADD hackers 1969 "Linus Torvalds"
+ZADD hackers 1957 "Sophie Wilson"
+ZADD hackers 1912 "Alan Turing"
+# 一次性添加多个元素
+zadd leaders 1 mao 2 xi
+# 下标同 lrange
+ZRANGE hackers 2 4 => 1) "Claude Shannon", 2) "Alan Kay", 3) "Richard Stallman"
+```
+
+### hashes
+
+类似 [HashMap](#HashMap)，是字符串键与字符串值的映射
+
+```shell
+# 键在前，值在后
+HSET user:1000 name "John Smith"
+HSET user:1000 email "john.smith@example.com"
+HSET user:1000 password "s3cret"
+# 获取所有键、值
+HGETALL user:1000 => 1) "name"
+									   2) "John Smith"
+                     3) "email"
+                     4) "john.smith@example.com"
+                     5) "password"
+                     6) "s3cret"
+# 对某个键进行增加、减少、删除
+HSET user:1000 visits 10
+HINCRBY user:1000 visits 1 => 11
+HINCRBY user:1000 visits 10 => 21
+HDEL user:1000 visits
+HINCRBY user:1000 visits 1 => 1
+# 一次性添加多个键值对
+HMSET user:1001 name "Mary Jones" password "hidden" email "mjones@example.com"
+# 获取某个键的值
+HGET user:1001 name => "Mary Jones"
+```
+
+## 分布式锁实现
+
+并发请求统一到 Redis 获取锁，通过 `setnx` 命令设置成功与否来实现锁的抢占并设置过期时间保证锁能释放，命令如下：
+
+```shell
+# key 不存在（not exist），设置 key 的值，否则什么都不做
+# 保证设值和设置过期时间的原子性
+set <key> <value> ex <seconds> nx
+# 释放锁
+del <key>
+```
+
+抢占锁的线程执行完业务后，通过删除 key 来释放锁。
+
+线程的业务执行时间超过过期时间，锁自动释放，导致锁被其他线程获取，从而失去原子性，因此需要设置唯一编号，在执行完业务后，删除自己设置的锁。
+
+## 分布式 ID
+
+通过 `incr` 和 `increby` 这样自增的命令，保证原子性
 
 # 前端知识点
 

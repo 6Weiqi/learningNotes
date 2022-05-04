@@ -10,14 +10,14 @@
 
 * A(tomic)：原子性，事务作为原子单位，要么全部执行，要么全部不执行
 * C(onsistent)：一致性，事务完成后，所有数据的状态是一致的
-* I(solation)：隔离性，并发的多个事务间的修改必须相互隔离
+* I(solation)：隔离性，并发的多个事务间对数据的修改必须相互隔离
 * D(uration)：持久性，事务完成后，数据的修改要持久化存储
 
 ## 隔离级别
 
 **多个并发执行**的事务，涉及操作**同一条记录**的时候，需要针对性选择不同的隔离级别， 避免数据不一致
 
-| Isolation Level NAME                  | Isolation Level | 导致[脏读（Dirty Read）](#脏读)？ | 导致[不可重复读（Non Repeatable Read）](#不可重复读)？ | 导致[幻读（Phantom Read）](#幻读)？ |
+| Isolation Level Name                  | Isolation Level | 导致[脏读（Dirty Read）](#脏读)？ | 导致[不可重复读（Non Repeatable Read）](#不可重复读)？ | 导致[幻读（Phantom Read）](#幻读)？ |
 | :------------------------------------ | :-------------: | :-------------------------------: | :----------------------------------------------------: | :---------------------------------: |
 | [Read Uncommitted](#Read Uncommitted) |        1        |                Yes                |                          Yes                           |                 Yes                 |
 | [Read Committed](#Read Committed)     |        2        |                 -                 |                          Yes                           |                 Yes                 |
@@ -125,7 +125,7 @@ alter table <table_name> add unique <index_name>(<column_name>)
 alter table <table_name> add fulltext <index_name>(<column_name>)
 ```
 
-##前缀索引 
+## 前缀索引 
 
 ```mysql
 alter table <table_name> add index <index_name>(<column_name>(<prefix_length>))
@@ -133,7 +133,9 @@ alter table <table_name> add index <index_name>(<column_name>(<prefix_length>))
 
 > 前缀长度根据索引选择性（列上不重复的个数/总个数）决定，在前缀长度下的索引选择性越接近列的索引选择性，越适合作为前缀长度
 
-## 联合索引的最左匹配原则
+## 联合索引
+
+### 最左匹配原则
 
 **创建**联合索引时，一定要把最常用的列放在最左边
 
