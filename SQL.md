@@ -65,7 +65,7 @@
 ```mysql
 (7) SELECT  
 (8) DISTINCT <select_list>
-(1) FROM  <left_table>
+(1) FROM <left_table>
 (3) <join_type> JOIN <right_table>
 (2) ON <join_condition>
 (4) WHERE <where_condition>

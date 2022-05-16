@@ -100,13 +100,45 @@ Spring 不依赖 AOP 框架，Spring 集成了 AspectJ 来实现对 AOP 的支�
 
 > Spring Boot 是一个基于 Spring 的套件，它帮我们预组装了 Spring 的一系列组件，以便以尽可能少的代码和配置来开发基于 Spring 的 Java 应用程序；Spring 只提供了一系列组件，不成架构体系，而 Spring Boot 提供了开箱即用的应用程序架构，基于 Spring Boot 的预置结构继续开发，省时省力。
 
+基于自动配置和起步依赖，使用尽可能少的配置来快速构建应用。
+
 ## @SpringBootApplication
 
-提供了自动装配和注解扫描的功能
+提供了自动配置和注解扫描的功能
 
 ### @Import
 
 将指定类纳入容器管理
+
+## 定制 starter
+
+starter 是面向功能的，解决了对一个功能需要的依赖管理繁琐的问题，提供了一个功能需要的最小依赖
+
+命名方式：`xxx-spring-boot-starter`
+
+## 自动配置
+
+加载 `META-INF/spring.factories` 中 `EnableAutoConfiguration` *注解*对应的配置类。
+
+### 实现
+
+* 引入 `spring-boot-autoconfigure`
+
+* 结合条件注解 `@ConditionalOnXxx` 、自动配置加载顺序注解 `@AutoConfigureBefore` 等编写配置类
+
+* 在 `META-INF/spring.factories` 中声明配置类全路径
+
+### 
+
+# 微服务与分布式
+
+微服务是将一个应用按功能/业务进行拆分成一些相对内聚的服务。
+
+分布式可以是将不同的微服务部署在一台/多台服务器上，也可以是将一个应用部署在多台服务器上，通过负载均衡服务来分担访问压力。
+
+# Spring Cloud
+
+依赖 [Spring Boot](#Spring Boot)，提供了一系列开箱即用的组件来构建分布式系统中的通用模式：服务注册与发现、服务熔断与降级、服务配置、服务网关、服务链路追踪。
 
 # MQ
 
